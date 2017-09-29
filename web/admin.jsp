@@ -14,6 +14,13 @@
     #select_table option{
         width:120px;
     }
+
+    #ban_table{
+        width:120px;
+    }
+    #ban_table option{
+        width:120px;
+    }
 </style>
 
 <script type="text/javascript">
