@@ -111,7 +111,7 @@ public class admin_model {
     }
 
     public void log_unban(Integer userID) throws SQLException {
-        String activity = "unbanned";
+        String activity = "Unbanned";
         insert_log(userID, activity);
     }
 }
