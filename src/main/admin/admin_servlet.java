@@ -28,6 +28,13 @@ public class admin_servlet extends HttpServlet{
         String action = req.getParameter("action");
         System.out.println("Action:"+action);
 
+        if(action.equals("test")){
+            Integer userID = Integer.parseInt(req.getParameter("userID"));
+            req.setAttribute("userid", userID);
+            RequestDispatcher view = req.getRequestDispatcher("userhomepage.jsp");
+            view.forward(req, resp);
+        }
+
         if(action.equals("ShowUsers")) {
             String userName = req.getParameter("userName");
             req.setAttribute("username", showUsers(userName));
@@ -38,13 +45,9 @@ public class admin_servlet extends HttpServlet{
 
         if (action.equals("log")){
             Integer userID = Integer.parseInt(req.getParameter("userID"));
-            ArrayList<ArrayList> result = showLog(userID);
-            PrintWriter out = resp.getWriter();
-            for (ArrayList<ArrayList> row:result) {
-                out.append("Activity: "+row.get(0)+"<br>");
-                out.append("Time: "+row.get(1)+"<br>");
-            }
-
+            req.setAttribute("log", showLog(userID));
+            RequestDispatcher view = req.getRequestDispatcher("log.jsp");
+            view.forward(req, resp);
         }
 
         if (action.equals("ban")){

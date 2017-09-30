@@ -31,7 +31,6 @@
         var select = document.getElementById("select_table");
         var index=select.selectedIndex;
         var userID = select.options[index].value;
-        if (userID=="0") return;
         xmlhttp.onreadystatechange=function()
         {
             if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -41,7 +40,6 @@
         }
         xmlhttp.open("GET","/admin?action=log&&userID="+userID,true);
         xmlhttp.send();
-
     }
     function ban_log()
     {
@@ -49,7 +47,6 @@
         var select = document.getElementById("ban_table");
         var index=select.selectedIndex;
         var userID = select.options[index].value;
-        if (userID=="0") return;
         xmlhttp.onreadystatechange=function()
         {
             if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -82,6 +79,7 @@
         window.location.reload();
     }
 
+
 </script>
 <html>
 <head>
@@ -111,52 +109,19 @@
     <tr align="center">
         <td align="center">
 
-            <select id="select_table" name="selected_user" size="5" onchange="log()" >
-                <%
-                    try{
-                        ArrayList<ArrayList> name_list = (ArrayList<ArrayList>) request.getAttribute("username");
-                        for (ArrayList row: name_list ) {
-                            out.append("<option value=\""+row.get(0)+"\">"+row.get(0)+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+row.get(1)+"</option>");
-                        }
-                    } catch(Exception e){
-
-                    }
-                %>
-                <%--<c:forEach var="user_list" items="${pageScope.username}">--%>
-                    <%--<c:forEach var="row" items="${user_list}">--%>
-                        <%--<option value="${row.get(0)}">${row.get(0)}+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+${row.get(1)}</option>--%>
-                    <%--</c:forEach>--%>
-                <%--</c:forEach>--%>
+            <select id="select_table" name="selected_user" size="5">
+                <c:forEach var="row" items="${username}">
+                    <option value="${row.get(0)}" onclick="log()">${row.get(0)}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${row.get(1)}</option>
+                </c:forEach>
 
 
 
             </select>
         </td>
-        <td><select id="ban_table" name="selected_user" size="5" onchange="ban_log()">
-            <%--<%--%>
-                <%--try{--%>
-                    <%--ArrayList<ArrayList> name_list = (ArrayList<ArrayList>) request.getAttribute("ban");--%>
-                    <%--for (ArrayList row: name_list ) {--%>
-                        <%--out.append("<option value=\""+row.get(0)+"\">"+row.get(0)+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+row.get(1)+"</option>");--%>
-                    <%--}--%>
-                <%--} catch(Exception e){--%>
-
-                <%--}--%>
-            <%--%>--%>
-                <script>
-                    window.alert("1")
-                </script>
-                <c:forEach var="ban_list" items="${ban}">
-                    <script>
-                        window.alert("2")
-                    </script>
-                    <c:forEach var="row" items="${ban_list}">
-                        <script>
-                            window.alert("3")
-                        </script>
-                        <option value="${row.get(0)}">${row.get(0)}+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+${row.get(1)}</option>
-                    </c:forEach>
-                </c:forEach>
+        <td><select id="ban_table" name="selected_user" size="5">
+            <c:forEach var="row" items="${ban}">
+                <option value="${row.get(0)}" onclick="ban_log()">${row.get(0)}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${row.get(1)}</option>
+            </c:forEach>
         </select>
         </td>
     </tr>
@@ -168,9 +133,11 @@
 </table>
 
 <p>log:</p>
-<table id="log">
+<div id="log">
 
-</table>
+</div>
+
+
 </center>
 </body>
 </html>

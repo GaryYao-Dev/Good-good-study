@@ -6,6 +6,24 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<script type="text/javascript">
+    function log()
+    {
+        var xmlhttp = new XMLHttpRequest();
+        var userID = "${userid}";
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                document.getElementById("log").innerHTML=xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","/admin?action=log&&userID="+userID,true);
+        xmlhttp.send();
+    }
+</script>
+
 <html>
 <head>
     <title>homepage</title>
@@ -122,7 +140,7 @@
     <div class="fb-profile-block-menu">
         <div class="block-menu">
             <ul>
-                <li><a href="#">Timeline</a></li>
+                <li><a href="#" onclick="log()">Timeline</a></li>
                 <li><a href="#">about</a></li>
                 <li><a href="#">Friends</a></li>
                 <li><a href="#">Photos</a></li>
@@ -130,6 +148,10 @@
             </ul>
         </div>
     </div>
+
+</div>
+
+<div id="log">
 
 </div>
 
