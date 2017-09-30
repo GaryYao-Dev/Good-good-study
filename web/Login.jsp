@@ -99,20 +99,21 @@
 <logo>UNSWBOOk</logo>
 <div class="row" style="margin-top:20px">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		<form role="form" form action="admin_login_servlet" method="post">
+		<form role="form" form action="/login" method="get">
 			<fieldset>
 			<br/>
 			<br/>
 			<br/>
 			
-				<h2>Admin Login</h2>
+				<h2>Please Sign In</h2>
 				<hr class="colorgraph">
 				<div class="form-group">
-                    <input type="username" name="admin_username" id="username" class="form-control input-lg" placeholder="Username">
+                    <input type="username" name="username" id="username" class="form-control input-lg" placeholder="Username">
 				</div>
 				<div class="form-group">
-                    <input type="password" name="admin_password" id="password" class="form-control input-lg" placeholder="Password">
+                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
 				</div>
+				<h5>If you do not have an account, please sign up first.</h5>
 				<hr class="colorgraph">
 				<div class="row">
 					<div class="col-xs-6 col-sm-6 col-md-6">
@@ -138,17 +139,12 @@
 			</fieldset>
 		</form>
 		<%
-			try {
-				if (!(boolean) request.getAttribute("status")) {
-		%>
-		<script>
-            window.alert("Login Failed, please try again.")
-		</script>
-		<%
-				}
-			}catch (Exception e){
+			String conf= (String)session.getAttribute("login_confirm");
+			if(conf != null && conf == "wrong"){
+				out.println("Sorry,username doesn't exist or password is wrong.\nPlease try again.");
 			}
 		%>
+
 	</div>
 
 </div>
