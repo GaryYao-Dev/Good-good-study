@@ -7,6 +7,30 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <title>Sign Up</title>
+<script type="text/javascript">
+function validate_email(field)
+{
+with (field)
+{
+apos=value.indexOf("@")
+dotpos=value.lastIndexOf(".")
+len = value.length
+if (apos<1||dotpos-apos<2||dotpos > len - 2) 
+  {document.getElementById("invalid-email").innerHTML="<h6>Invalid Email.</h6>";return false}
+else {document.getElementById("invalid-email").innerHTML="";return true}
+}
+}
+
+function validate_password()
+{
+var item1=document.getElementById("password1").value;
+var item2=document.getElementById("password2").value;
+if (item1 != item2) 
+  {document.getElementById("invalid-password").innerHTML="<h6>Passwords do not match.</h6>";return false}
+else {document.getElementById("invalid-password").innerHTML="";return true}
+}
+</script>
+
 </head>
 <body>
 <div class="container" id="wrap">
@@ -18,14 +42,21 @@
                     <h4>Sign up here and start using unswbook.</h4>
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
-                            <input type="text" name="name" value="" class="form-control input-lg" placeholder="First Name"  />                        </div>
+                            <input type="text" name="name" value="" class="form-control input-lg" placeholder="First Name"  />
+                            <div id = "invalid-name"></div>                          </div>
                         <div class="col-xs-6 col-md-6">
-                            <input type="text" name="lastname" value="" class="form-control input-lg" placeholder="Last Name"  />                        </div>
+                            <input type="text" name="lastname" value="" class="form-control input-lg" placeholder="Last Name"  />
+                            <div id = "invalid-lastname"></div>                        </div>
                     </div>
-                    <input type="text" name="email" value="" class="form-control input-lg" placeholder="Your Email"  />
+                    <input type="text" name="email" value="" class="form-control input-lg"  onblur="validate_email(this)" placeholder="Your Email"  />
+                    <div id = "invalid-email"></div>
                     <input type="text" name="username" value="" class="form-control input-lg" placeholder="Username"  />
-                    <input type="password" name="password" value="" class="form-control input-lg" placeholder="Password"  />
-                    <input type="password" name="confirm_password" value="" class="form-control input-lg" placeholder="Confirm Password"  />                    <label>Birth Date</label>                    <div class="row">
+                     <div id = "invalid-username"></div> 
+                    <input type="password" name="password" value="" id = "password1" class="form-control input-lg" placeholder="Password"  />
+                    <input type="password" name="confirm_password" value="" id = "password2" class="form-control input-lg" onblur="validate_password()" placeholder="Confirm Password"  />
+                    <div id = "invalid-password"></div>  
+                                      <label>Birth Date</label>                    <div class="row">
+                       
                         <div class="col-xs-4 col-md-4">
                             <select name="month" class = "form-control input-lg">
 <option value="01">Jan</option>
