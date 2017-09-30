@@ -7,6 +7,20 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <title>Update information</title>
+<script type="text/javascript">
+function validate_email(field)
+{
+with (field)
+{
+apos=value.indexOf("@")
+dotpos=value.lastIndexOf(".")
+len = value.length
+if (apos<1||dotpos-apos<2||dotpos > len - 2) 
+  {document.getElementById("invalid-email").innerHTML="<h6>Invalid Email.</h6>";return false}
+else {document.getElementById("invalid-email").innerHTML="";return true}
+}
+}
+</script>
 </head>
 <div class="container" id="wrap">
 <logo>UNSWBOOk</logo>
@@ -21,7 +35,8 @@
                         <div class="col-xs-6 col-md-6">
                             <input type="text" name="lastname" value="" class="form-control input-lg" placeholder="Last Name"  />                        </div>
                     </div>
-                    <input type="text" name="email" value="" class="form-control input-lg" placeholder="Your Email"  />
+                                        <input type="text" name="email" value="" class="form-control input-lg"  onblur="validate_email(this)" placeholder="Your Email"  />
+                    <div id = "invalid-email"></div>
                     <input type="text" name="username" value="" class="form-control input-lg" placeholder="Username"  />
                     <input type="password" name="originalpassword" value="" class="form-control input-lg" placeholder="Original Password"  />
                     <input type="password" name="newpassword" value="" class="form-control input-lg" placeholder="New Password"  />                    <label>Birth Date</label>                    <div class="row">
