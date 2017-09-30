@@ -50,5 +50,32 @@ public class UserInfro {
         return  userName;
 
     }
+    public static int getUseridByUsername(String user_name){
+        int userid = 0;
+        Connection conn = null;
+        PreparedStatement pstmt =null;
+        ResultSet rs = null;
+
+        try {
+            conn = DButil.getConnection();
+            pstmt = conn.prepareStatement("select userid from users where user_name = ?");
+            pstmt.setString(1,user_name);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                userid = rs.getInt("userid");
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DButil.closeall(conn,pstmt,rs);
+        }
+
+        return  userid;
+
+    }
+
+
 
 }

@@ -112,21 +112,21 @@
         <td align="center">
 
             <select id="select_table" name="selected_user" size="5" onchange="log()" >
-                <%--<%--%>
-                    <%--try{--%>
-                        <%--ArrayList<ArrayList> name_list = (ArrayList<ArrayList>) request.getAttribute("username");--%>
-                        <%--for (ArrayList row: name_list ) {--%>
-                            <%--out.append("<option value=\""+row.get(0)+"\">"+row.get(0)+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+row.get(1)+"</option>");--%>
-                        <%--}--%>
-                    <%--} catch(Exception e){--%>
+                <%
+                    try{
+                        ArrayList<ArrayList> name_list = (ArrayList<ArrayList>) request.getAttribute("username");
+                        for (ArrayList row: name_list ) {
+                            out.append("<option value=\""+row.get(0)+"\">"+row.get(0)+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+row.get(1)+"</option>");
+                        }
+                    } catch(Exception e){
 
-                    <%--}--%>
-                <%--%>--%>
-                <c:forEach var="user_list" items="${pageScope.username}">
-                    <c:forEach var="row" items="${user_list}">
-                        <option value="${row.get(0)}">${row.get(0)}+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+${row.get(1)}</option>
-                    </c:forEach>
-                </c:forEach>
+                    }
+                %>
+                <%--<c:forEach var="user_list" items="${pageScope.username}">--%>
+                    <%--<c:forEach var="row" items="${user_list}">--%>
+                        <%--<option value="${row.get(0)}">${row.get(0)}+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+${row.get(1)}</option>--%>
+                    <%--</c:forEach>--%>
+                <%--</c:forEach>--%>
 
 
 
@@ -143,8 +143,17 @@
 
                 <%--}--%>
             <%--%>--%>
-                <c:forEach var="ban_list" items="${sessionScope.ban}">
+                <script>
+                    window.alert("1")
+                </script>
+                <c:forEach var="ban_list" items="${ban}">
+                    <script>
+                        window.alert("2")
+                    </script>
                     <c:forEach var="row" items="${ban_list}">
+                        <script>
+                            window.alert("3")
+                        </script>
                         <option value="${row.get(0)}">${row.get(0)}+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+${row.get(1)}</option>
                     </c:forEach>
                 </c:forEach>

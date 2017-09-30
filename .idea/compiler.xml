@@ -9,8 +9,8 @@
         <module name="UNSWbook" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="9">
-      <module name="UNSWbook" target="9" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="UNSWbook" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
