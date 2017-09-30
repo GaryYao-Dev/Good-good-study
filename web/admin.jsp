@@ -132,7 +132,6 @@
 
 </table>
 
-<p>log:</p>
 <div id="log">
 
 </div>

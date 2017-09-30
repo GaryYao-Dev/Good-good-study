@@ -12,6 +12,7 @@
     <title>Title</title>
 </head>
 <body>
+<h5>LOG</h5>
 <table border="2">
     <c:forEach items="${log}" var="row">
         <tr><td>Activity</td><td>${row.get(0)}</td></tr>
