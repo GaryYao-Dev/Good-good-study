@@ -115,11 +115,11 @@
 				</div>
 				<hr class="colorgraph">
 				<div class="row">
-					<div class="col-xs-6 col-sm-6 col-md-6">
+						<div class="col-xs-6 col-sm-6 col-md-6">
                         <input type="submit" class="btn btn-lg btn-success btn-block" value="Login">
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6">
-						<a href="Registrationhome.jsp" class="btn btn-lg btn-primary btn-block">Register</a>
+						<%--<a href="Registrationhome.jsp" class="btn btn-lg btn-primary btn-block">Register</a>--%>
 							
 							<br/>
 							<br/>
