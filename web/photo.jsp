@@ -21,7 +21,17 @@ int rubbish=ad.number();
 int len=request.getContentLength();
 byte buffer[]=new byte[len];
 InputStream in=request.getInputStream();
-
+String ppp=request.getRealPath("/")+"WEB-INF/headphoto";
+if (!(new java.io.File(ppp).isDirectory())) {
+	new java.io.File(ppp).mkdir();
+}
+java.io.File myFile = new java.io.File(ppp+"/headphototest.txt");
+java.io.FileOutputStream fout = null;
+fout = new java.io.FileOutputStream(myFile);
+byte b[]= "你好！".getBytes();
+	fout.write(b);
+	fout.flush();  //写入文件
+	fout.close();  //关闭
 String path=request.getRealPath("/")+"WEB-INF/headphoto/headphototest.txt";
 String filepath=request.getRealPath("/")+"WEB-INF/headphoto/headphoto"+String.valueOf(rubbish)+".jpeg";
 RandomAccessFile raf=new RandomAccessFile(path,"r");
