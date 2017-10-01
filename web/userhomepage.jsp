@@ -145,9 +145,7 @@
 <body>
 <%@include file="header.jsp"%>
 <%
-    Integer userID = (Integer) pageContext.getSession().getAttribute("userid");
     String imgPath = UserInfro.getImgPathByUserid(userID);
-    String userName = UserInfro.getUserNameByUserid(userID);
 %>
 <div class="fb-profile-block">
     <div class="fb-profile-block-thumb"><img src="http://themeboxer.com/demo/snipp/coverpage.jpg" alt="" title=""></div>
