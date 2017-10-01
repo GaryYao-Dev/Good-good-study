@@ -153,34 +153,51 @@ public class add {
 		insertuserprofiles(password,username,name,year,month,day,(String)gender,email);
 		return "A confirm e-mail has been sent to your e-mail";
 	}
-	public static String confirm(String user) {
-		getall();
-		boolean f=false;
-		int i;
-		for (i=1;i<=num;i++) {
-			if (a[i].equals(user)) {
-				f=true;
-				break;
-			}
-		}
-		if (f==false) {
-			return "no registration information of this username";
-		}
-		Connection conn=connect();
-		String sql="update users set confirm_email=1 where user_name='"+user+"'";
-		PreparedStatement pstmt;
-		try {
-			pstmt=(PreparedStatement) conn.prepareStatement(sql);
-			i=pstmt.executeUpdate();
-			pstmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return "You registration has been confirm!";
-	}
+    public String confirm(String user) {
+        getall();
+        boolean f=false;
+        int i;
+        for (i=1;i<=num;i++) {
+            if (a[i].equals(user)) {
+                f=true;
+                break;
+            }
+        }
+        if (f==false) {
+            return "no registration information of this username";
+        }
+        Connection conn=connect();
+        String sql="update users set confirm_email=1 where user_name='"+user+"'";
+        PreparedStatement pstmt;
+        try {
+            pstmt=(PreparedStatement) conn.prepareStatement(sql);
+            i=pstmt.executeUpdate();
+            sql="select userid from users where user_name='"+user+"'";
+            pstmt=(PreparedStatement) conn.prepareStatement(sql);
+            ResultSet rs=pstmt.executeQuery();
+            long col=0;
+            while (rs.next()) {
+                col=rs.getLong(1);
+            }
+            int userid=(int)col;
+            sql="INSERT INTO log (userID, activity) VALUES (?,?)";
+            PreparedStatement log;
+            log=(PreparedStatement) conn.prepareStatement(sql);
+            log.setInt(1, userid);
+            log.setString(2, "Register");
+            log.executeUpdate();
+            log.close();
+            pstmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        
+        
+        return "You registration has been confirm!";
+    }
 	
 	public static String update(String username,String password1,String password2,String name,String year1,String month1,String day1,String gender,String email) {
 		Connection conn=connect();

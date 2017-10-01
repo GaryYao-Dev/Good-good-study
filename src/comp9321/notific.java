@@ -16,10 +16,10 @@ public class notific {
 
             conn = DButil.getConnection();
 
-            pstmt = conn.prepareStatement("select senderId,n_content,n_time from notification where readornot=0 and receiverid="+String.valueOf(userid));
+            pstmt = conn.prepareStatement("select n_content,n_time from notification where readornot=0 and receiverid="+String.valueOf(userid));
             rs=pstmt.executeQuery();
             while (rs.next()){
-                result.add(rs.getString(1)+" said "+rs.getString(2)+" at "+rs.getString(3));
+                result.add(rs.getString(1)+" at "+rs.getString(2));
             }
 
         } catch (SQLException e) {
