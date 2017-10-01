@@ -30,7 +30,7 @@
 	String password=request.getParameter("password");
 	String name1=request.getParameter("name");
 	String name2=request.getParameter("lastname");
-	String name=name1+name2;
+	String name=name1+" "+name2;
 	String gender=request.getParameter("gender");
 	String email=request.getParameter("email");
 	String s="";
