@@ -62,7 +62,7 @@ public class UserInfro {
             DButil.closeall(conn,pstmt,rs);
         }
         System.out.println(imgPath);
-        return  imgPath;
+        return  "/headphoto/"+imgPath;
     }
 
     public static String getUserNameByUserid(int userid){
