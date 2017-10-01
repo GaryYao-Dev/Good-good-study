@@ -1,14 +1,17 @@
 package main.JDBC;
 
+import main.model.FriendProfileBean;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 public class FriendsSearch {
 
-        public static List<String> getAllFriend(int userid) {
+    public static List<String> getAllFriend(int userid) {
         List<String> allfriend_list = new ArrayList();
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -39,29 +42,41 @@ public class FriendsSearch {
         return allfriend_list;
     }
 
-    public static List<String> getSpecificFriend(String username, int userid) {
-        List<String> specificfriend_list = new ArrayList();
+    /**
+     * bar 上 输入 名字 userName
+     * @param username
+     * @return
+     */
+    public static List<FriendProfileBean> getFriendByuserName(String username,int user_id) {
+        List<FriendProfileBean> friend_list = new ArrayList<>();
+
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+
         try {
             conn = DButil.getConnection();
-            String sql = "select * from users where user_name LIKE '" +"%"+username+"%" +"'and userid !='" + userid + "'";
-            pstmt = (PreparedStatement) conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement("select  userid,photo,userName,email,gender,u_day,u_year,u_month \n" +
+                    "from users\n" +
+                    "where confirm_email = true \n" +
+                    "and confirm = true\n" +
+                    "and userName like '%"+username+"%';");
             rs = pstmt.executeQuery();
-
             while (rs.next()) {
-                specificfriend_list.add(rs.getString(2));
-                //System.out.println(rs.getString(2));
-                specificfriend_list.add(rs.getString(3));
-                //System.out.println(rs.getString(3));
-                specificfriend_list.add(rs.getString(6));
-                specificfriend_list.add(rs.getString(9));
-               // System.out.println(rs.getString(9));
-                specificfriend_list.add(rs.getString(10));
-                //System.out.println(rs.getString(10));
-                specificfriend_list.add(rs.getString(11));
-                specificfriend_list.add(rs.getString(12));
+                if(FriendOrNot(user_id,rs.getInt("userid") )){
+                    //已经是朋友
+                    continue;
+                }
+                FriendProfileBean f = new FriendProfileBean();
+                f.setUserid(rs.getInt("userid"));
+                f.setPhoto(rs.getString("photo"));
+                f.setUserName(rs.getString("userName"));
+                f.setEmail(rs.getString("email"));
+                f.setGender(rs.getString("gender"));
+                f.setU_day(rs.getString("u_day"));
+                f.setU_year(rs.getString("u_year"));
+                f.setU_month(rs.getString("u_month"));
+                friend_list.add(f);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,7 +84,7 @@ public class FriendsSearch {
             DButil.closeall(conn, pstmt, rs);
 
         }
-        return specificfriend_list;
+        return friend_list;
     }
 
     public static List<String> getAdvancedSearch(String[] list) {
@@ -123,7 +138,6 @@ public class FriendsSearch {
         return advancedsearch_list;
     }
 
-
     public static void deleteFriend(int friendid, int userid) {
 
         Connection conn = null;
@@ -131,6 +145,7 @@ public class FriendsSearch {
         ResultSet rs = null;
         try {
             conn = DButil.getConnection();
+
             pstmt = conn.prepareStatement("update friendship set confirm = 0 where friend_id ='"+friendid+"'and user_id='"+userid+"' and confirm=1");
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -142,24 +157,67 @@ public class FriendsSearch {
 
     }
 
+    public static void addFriend(int friendid, int userid) {
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DButil.getConnection();
+            pstmt = conn.prepareStatement("insert into friendship(user_id,friend_id) values(?,?)");
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DButil.closeall(conn, pstmt, rs);
+
+        }
+    }
+
+
+    public static boolean FriendOrNot(int u1,int u2){
+        boolean r = false;
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = DButil.getConnection();
+            pstmt = conn.prepareStatement("select *\n" +
+                    "from friendship\n" +
+                    "where user_id = ?\n" +
+                    "and friend_id= ?");
+            pstmt.setInt(1,u1);
+            pstmt.setInt(2,u2);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                //有记录 说明 已经是朋友了
+                r= true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DButil.closeall(conn, pstmt, rs);
+        }
+        return r;
+
+    }
 
 
 
+
+
+
+
+//
 //    public static void main(String[] args) {
-//
-//        List<String> hhh = new ArrayList();
-//        String[] bbbb = new String[5];
-////        bbbb[0] = ("james");
-////        bbbb[1] = (null);
-////        bbbb[2] = ("1993");
-////        bbbb[3] = ("6");
-////        bbbb[4] = ("14");
-//        int friend = 5;
-//        int user =1;
-//
-//        deleteFriend(friend, user);
-////        System.out.println(hhh);
-//
+//        String s[] = {"","","","",""};
+//        List<String> w = getAdvancedSearch(s);
+//        System.out.print(w);
 //
 //    }
+//
+//
+
 }
