@@ -85,6 +85,16 @@ public class admin_model {
         insert_log(userID, activity);
     }
 
+    public void log_add_friend(Integer userID, Integer friendID) throws SQLException {
+        String activity = "Add "+friendID+" as friend";
+        insert_log(userID, activity);
+    }
+
+    public void log_delete_friend(Integer userID, Integer friendID) throws SQLException {
+        String activity = "Delete friend "+ friendID;
+        insert_log(userID, activity);
+    }
+
     public void log_post(Integer userID, String content) throws SQLException {
         String activity = "Post:"+content;
         insert_log(userID, activity);
@@ -95,15 +105,7 @@ public class admin_model {
         insert_log(userID, activity);
     }
 
-    public void log_add_friend(Integer userID, Integer friendID) throws SQLException {
-        String activity = "Add "+friendID+" as friend";
-        insert_log(userID, activity);
-    }
 
-    public void log_delete_friend(Integer userID, Integer friendID) throws SQLException {
-        String activity = "Delete friend "+ friendID;
-        insert_log(userID, activity);
-    }
 
     public void log_ban(Integer userID) throws SQLException {
         String activity = "Banned";
