@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -75,8 +74,6 @@ public class admin_servlet extends HttpServlet{
             RequestDispatcher view = req.getRequestDispatcher("admin.jsp");
             view.forward(req, resp);
         }
-
-
 
     }
 
