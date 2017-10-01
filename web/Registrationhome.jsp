@@ -8,7 +8,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <title>Sign Up</title>
 <script type="text/javascript">
-function validate_email(field)
+function    validate_email(field)
 {
 with (field)
 {
