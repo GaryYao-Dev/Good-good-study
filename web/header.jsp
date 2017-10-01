@@ -51,7 +51,7 @@
                     Wall
                 </button>
                 <button type="button" onclick="forwardtohome()" class="btn btn-default navbar-btn">
-                    name
+                    ${pageContext.session.getAttribute('user_name')}
                 </button>
                 <button type="button" onclick="forwardtohome()" class="btn btn-default navbar-btn">
                     notification

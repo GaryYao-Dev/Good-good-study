@@ -134,7 +134,7 @@
     <div class="fb-profile-block-thumb"><img src="http://themeboxer.com/demo/snipp/coverpage.jpg" alt="" title=""></div>
     <div class="profile-img"><a href="#"><img src="http://themeboxer.com/demo/snipp/profile.jpg" alt="" title=""></a></div>
     <div class="profile-name">
-        <h2>Profile Name</h2>
+        <h2>${pageContext.session.getAttribute('user_name')}</h2>
     </div>
 
     <div class="fb-profile-block-menu">
