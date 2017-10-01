@@ -15,18 +15,17 @@ import java.util.List;
 
 import main.JDBC.FriendsSearch;
 
-@WebServlet("SearchFriendsServlet")
+@WebServlet("/SearchFriendsServlet")
 public class SearchFriendsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<String> specificfriend_list = new ArrayList();
-        HttpSession session = (HttpSession) request.getSession();
-        int userid = (int) session.getAttribute("userid");
+        HttpSession session = request.getSession();
+        Integer userid = (Integer) session.getAttribute("userid");
 
-        //search specific firend`
-        String user_name = request.getParameter("user_name");
+        String user_name = request.getParameter("search_user_name");
+
         if (user_name != null){
-            FriendsSearch fs = new FriendsSearch();
-            specificfriend_list = fs.getSpecificFriend(user_name, userid);
+            specificfriend_list = FriendsSearch.getSpecificFriend(user_name, userid);
         }
         session.setAttribute("specificfriend_list",specificfriend_list);
         response.sendRedirect("/friendsearchshow.jsp");

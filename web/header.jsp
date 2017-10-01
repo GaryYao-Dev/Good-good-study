@@ -23,6 +23,8 @@
             window.location.href ="userhomepage.jsp"
         }
 
+
+
     </script>
 </head>
 <body>
@@ -33,11 +35,11 @@
             <a class="navbar-brand" href="#">UNSWbook</a>
         </div>
         <div>
-            <form class="navbar-form navbar-left" role="search" action="">
+            <form class="navbar-form navbar-left" role="search" action="/SearchFriendsServlet" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search" name="search_user_name">
                 </div>
-                <button type="submit" class="btn btn-default">Search friends</button>
+                <input type="submit" class="btn btn-default" value="Search friends">
             </form>
 
 

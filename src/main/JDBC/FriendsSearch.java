@@ -1,15 +1,11 @@
 package main.JDBC;
 
-
-
-//import java.beans.BeansAppletStub;
-import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 public class FriendsSearch {
 
         public static List<String> getAllFriend(int userid) {
@@ -51,12 +47,9 @@ public class FriendsSearch {
         try {
             conn = DButil.getConnection();
             String sql = "select * from users where user_name LIKE '" +"%"+username+"%" +"'and userid !='" + userid + "'";
-            int i = 0;
-            int nnn = 7;
             pstmt = (PreparedStatement) conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
-            int col = rs.getMetaData().getColumnCount();
-            System.out.println(rs);
+
             while (rs.next()) {
                 specificfriend_list.add(rs.getString(2));
                 //System.out.println(rs.getString(2));

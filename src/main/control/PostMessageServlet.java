@@ -27,7 +27,6 @@ public class PostMessageServlet extends HttpServlet {
 
         //获取 自身的 userid
         HttpSession session = request.getSession();
-        session.setAttribute("userid",1); //test
         int user_id = (int) session.getAttribute("userid");
 
         //根据是否传入 p_id的 值  判断 是 显示操作 还是 删除操作
