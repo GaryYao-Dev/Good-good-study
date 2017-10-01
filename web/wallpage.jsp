@@ -104,7 +104,7 @@
       <div class="row">
     <c:forEach var="postMessage" items="${sessionScope.postMessageList}" >
         <%--自己的post 可删除 可隐藏 --%>
-        <c:if test="${postMessage.p_userid == pageContext.session.getAttribute('userid')}">
+        <c:if test="${postMessage.p_userid == pageContext.session.getAttribute('userId')}">
             <div class="col-md-4" id ="${postMessage.p_id}">
                 <button type="button" onclick="toggle('${postMessage.p_id}')">hidden</button>
                 <button type="button" onclick="deletepost('${postMessage.p_id}')">delete</button>
@@ -128,7 +128,6 @@
             </div>
         </c:if>
 
-        <%--朋友的post 只能隐藏--%>
         <c:if test="${postMessage.p_userid != pageContext.session.getAttribute('userid')}">
             <div class="col-md-4" id ="${postMessage.p_id}">
                 <button type="button" onclick="toggle('${postMessage.p_id}')">hidden</button>

@@ -22,6 +22,21 @@
         xmlhttp.open("GET","/admin?action=log&&userID="+userID,true);
         xmlhttp.send();
     }
+
+    function show_friend()
+    {
+        var xmlhttp = new XMLHttpRequest();
+        var userID = "${userid}";
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                document.getElementById("log").innerHTML=xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","/userhomepage_showfriends.jsp?userID="+userID,true);
+        xmlhttp.send();
+    }
 </script>
 
 <html>
@@ -130,21 +145,22 @@
 <body>
 <%@include file="header.jsp"%>
 <%
-    Integer userid = (Integer) pageContext.getSession().getAttribute("userid");
-    String imgPath = UserInfro.getImgPathByUserid(userid);
+    Integer userID = (Integer) pageContext.getSession().getAttribute("userid");
+    String imgPath = UserInfro.getImgPathByUserid(userID);
+    String userName = UserInfro.getUserNameByUserid(userID);
 %>
 <div class="fb-profile-block">
     <div class="fb-profile-block-thumb"><img src="http://themeboxer.com/demo/snipp/coverpage.jpg" alt="" title=""></div>
     <div class="profile-img"><a href="#"><img src="<%=imgPath%>" alt="" title=""></a></div>
     <div class="profile-name">
-        <h2>${pageContext.session.getAttribute('user_name')}</h2>
+        <h2><%=userName%></h2>
     </div>
 
     <div class="fb-profile-block-menu">
         <div class="block-menu">
             <ul>
                 <li><a href="#" onclick="log()">Timeline</a></li>
-                <li><a href="#">about</a></li>
+                <li><a href="#" onclick="show_friend()">about</a></li>
                 <li><a href="#">Friends</a></li>
                 <li><a href="#">Photos</a></li>
                 <li><a href="#">More...</a></li>

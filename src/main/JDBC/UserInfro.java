@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserInfro {
 
@@ -15,6 +16,30 @@ public class UserInfro {
 //    }
 //
 //
+
+    public static ArrayList<Integer> getFriendByUserid(int userid){
+        ArrayList<Integer> friends_list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement pstmt =null;
+        ResultSet rs = null;
+
+        try {
+            conn = DButil.getConnection();
+
+            pstmt = conn.prepareStatement("select friend_id from friendship where userid = ?");
+            pstmt.setInt(1,userid);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                friends_list.add(rs.getInt("friend_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DButil.closeall(conn,pstmt,rs);
+        }
+        System.out.println(friends_list);
+        return  friends_list;
+    }
 
     public static String getImgPathByUserid(int userid){
         String imgPath = null;

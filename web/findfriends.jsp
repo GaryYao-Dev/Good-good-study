@@ -1,13 +1,12 @@
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
   Created by IntelliJ IDEA.
-  User: jiewang
-  Date: 30/9/17
-  Time: 1:42 AM
+  User: kevifunaumac
+  Date: 2017/10/1
+  Time: 下午9:32
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Title</title>
@@ -16,47 +15,59 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="helper.js"></script>
 
-    <style type="text/css">
-        .top {
-            text-align: center;
-        }
-
-        .shadow {
-            box-shadow: 0px 0px 5px 0px;
-            padding-top: 10px;
-        }
-
-        h2, a{
-            color: #fff;
-        }
-    </style>
-
 </head>
 <body>
-<%@ include file="header.jsp"%>
+
+<%@include file="header.jsp"%>
+
+
+
+
+
+<form action="findfriends" method="get">
+    <table  class="table">
+        <tr>
+            <td>userName</td>
+            <td>email</td>
+            <td>gender</td>
+            <td>u_year</td>
+            <td>u_month</td>
+            <td>u_day</td>
+        </tr>
+        <tr>
+            <td><input type="text" name="userName"></td>
+            <td><input type="text" name="email"></td>
+            <td><input type="text" name="gender"></td>
+            <td><input type="text" name="u_year"></td>
+            <td><input type="text" name="u_month"></td>
+            <td><input type="text" name="u_day"></td>
+        </tr>
+        <input type="submit" value="Advance search">
+
+    </table>
+</form>
+
 
 
 <div class="container">
     <div class="top">
-        <h2>Friend's List</h2>
+        <h2>People you may know</h2>
     </div>
     <div class="row">
         <div class="shadow">
-            <c:forEach var="u" items="${specificfriend_list}">
+            <c:forEach var="u" items="${findfriend_list.list}">
                 <div class="col-sm-12">
                     <div class="col-sm-2">
                         <img class="img-circle" width="60px">
                     </div>
 
                     <div class="col-sm-8">
-                        <h4>${u.userName}</h4>
-                        <p>${u.gender}</p>
-                        <p>${u.u_year}-${u.u_month}-${u.u_day}</p>
-                        <p>${u.email}</p>
+                        <h4><a href="#">${u}</a></h4>
+                        <p>${u}</p>
                     </div>
                     <div class="col-sm-2">
                         <br>
-                        <button type="button" onclick="addfriend(${u.userid})">Add friend </button>
+                        <button type="button" onclick="addfriend(${u})">Add friend </button>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -66,7 +77,6 @@
         </div>
     </div>
 </div>
-
 
 
 
@@ -91,7 +101,6 @@
         req.send(null);
     }
 </script>
-
 
 
 

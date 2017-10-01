@@ -22,7 +22,9 @@
         function forwardtohome() {
             window.location.href ="userhomepage.jsp"
         }
-
+        function forwardtofindfriends() {
+            window.location.href ="findfriends"
+        }
 
 
     </script>
@@ -35,23 +37,24 @@
             <a class="navbar-brand" href="#">UNSWbook</a>
         </div>
         <div>
-            <form class="navbar-form navbar-left" role="search" action="/SearchFriendsServlet" method="post">
+            <form class="navbar-form navbar-left" role="search" action="SearchFriendsServlet" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search" name="search_user_name">
+                    <input  type="text" class="form-control" placeholder="Search" name="search_user_name">
                 </div>
                 <input type="submit" class="btn btn-default" value="Search friends">
             </form>
 
 
+
             <ul class="nav navbar-nav navbar-right">
-                <button type="button" onclick="forwardtowall()" class="btn btn-default navbar-btn">
+                <button type="button" onclick="forwardtofindfriends()" class="btn btn-default navbar-btn">
                     Find Friends
                 </button>
                 <button type="button" onclick="forwardtowall()" class="btn btn-default navbar-btn">
                     Wall
                 </button>
                 <button type="button" onclick="forwardtohome()" class="btn btn-default navbar-btn">
-                    ${pageContext.session.getAttribute('user_name')}
+                    name
                 </button>
                 <button type="button" onclick="forwardtohome()" class="btn btn-default navbar-btn">
                     notification
