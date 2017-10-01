@@ -1,4 +1,4 @@
-<%--
+<%@ page import="main.JDBC.UserInfro" %><%--
   Created by IntelliJ IDEA.
   User: kevifunaumac
   Date: 2017/9/26
@@ -129,10 +129,13 @@
 </head>
 <body>
 <%@include file="header.jsp"%>
-
+<%
+    Integer userid = (Integer) pageContext.getSession().getAttribute("userid");
+    String imgPath = UserInfro.getImgPathByUserid(userid);
+%>
 <div class="fb-profile-block">
     <div class="fb-profile-block-thumb"><img src="http://themeboxer.com/demo/snipp/coverpage.jpg" alt="" title=""></div>
-    <div class="profile-img"><a href="#"><img src="http://themeboxer.com/demo/snipp/profile.jpg" alt="" title=""></a></div>
+    <div class="profile-img"><a href="#"><img src="<%=imgPath%>" alt="" title=""></a></div>
     <div class="profile-name">
         <h2>${pageContext.session.getAttribute('user_name')}</h2>
     </div>
