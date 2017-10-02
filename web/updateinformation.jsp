@@ -41,10 +41,27 @@
 	s=ad.update(username,password1,password2,name,year,month,day,gender,email);
 	
 	out.print(s);
+	if (s=="has updated"){
+	    int userid=ad.getid(username);
+		String filepath="headphoto"+String.valueOf(userid)+".jpeg";
+		ad.newphoto(username,filepath);
+	%>
+	<br>
+	<a href="Login.jsp">Now go to login in our unswbook</a>
+	<form method="post" action="changephoto.jsp?userid=<%=userid%>"enctype="multipart/form-data">
 
+	you can update your photo：<input type="file" name="image">
+	<br>
+	<input type="submit" value="submit" name="submit" size="25">
 
+	<br>
+	</form>
+
+	<%
+	}
 	
 %>
+
 </div>
 </body>
 </html>
