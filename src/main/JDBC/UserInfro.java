@@ -1,13 +1,10 @@
 package main.JDBC;
 
-import main.model.notificationBean;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class UserInfro {
 
@@ -123,9 +120,79 @@ public class UserInfro {
 
     }
 
+    public static String getUserEmailByUserid(int userid){
+        String email = null;
+        Connection conn = null;
+        PreparedStatement pstmt =null;
+        ResultSet rs = null;
 
+        try {
+            conn = DButil.getConnection();
 
+            pstmt = conn.prepareStatement("select email from users where userid = ?");
+            pstmt.setInt(1,userid);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                email = rs.getString("email");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DButil.closeall(conn,pstmt,rs);
+        }
 
+        return  email;
+
+    }
+
+    public static String getUser_nameByUserid(int userid){
+        String user_name= null;
+        Connection conn = null;
+        PreparedStatement pstmt =null;
+        ResultSet rs = null;
+
+        try {
+            conn = DButil.getConnection();
+
+            pstmt = conn.prepareStatement("select user_name from users where userid = ?");
+            pstmt.setInt(1,userid);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                user_name = rs.getString("user_name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DButil.closeall(conn,pstmt,rs);
+        }
+
+        return  user_name;
+
+    }
+    public static int getUseridByUser_name(String user_name){
+        int userid =  0;
+        Connection conn = null;
+        PreparedStatement pstmt =null;
+        ResultSet rs = null;
+
+        try {
+            conn = DButil.getConnection();
+
+            pstmt = conn.prepareStatement("select userid from users where user_name = ?");
+            pstmt.setString(1,user_name);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                userid = rs.getInt("userid");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DButil.closeall(conn,pstmt,rs);
+        }
+
+        return  userid;
+
+    }
 
 
 }
