@@ -1,7 +1,5 @@
 package main.JDBC;
 
-import sun.jvm.hotspot.opto.Block_List;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
