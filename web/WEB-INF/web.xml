@@ -75,11 +75,19 @@
         <servlet-name>CancelFriendRequestServlet</servlet-name>
         <url-pattern>/cancelfriendrequest</url-pattern>
     </servlet-mapping>
+         
+         
+    <servlet>
+        <servlet-name>FriendConfirmServlet</servlet-name>
+        <servlet-class>main.control.FriendConfirmServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FriendConfirmServlet</servlet-name>
+        <url-pattern>/friendConfirm</url-pattern>
+    </servlet-mapping>
 
 
-
-
-
+     
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
