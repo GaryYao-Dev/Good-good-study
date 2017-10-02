@@ -144,12 +144,14 @@
 </head>
 <body>
 <%@include file="header.jsp"%>
-
+<%
+//    String imgPath = UserInfro.getImgPathByUserid(userID);
+%>
 <div class="fb-profile-block">
     <div class="fb-profile-block-thumb"><img src="http://themeboxer.com/demo/snipp/coverpage.jpg" alt="" title=""></div>
     <div class="profile-img"><a href="#"><img src="http://themeboxer.com/demo/snipp/profile.jpg" alt="" title=""></a></div>
     <div class="profile-name">
-        <h2>Profile Name</h2>
+        <h2><%=userName%></h2>
     </div>
 
     <div class="fb-profile-block-menu">
@@ -161,6 +163,9 @@
             </ul>
         </div>
     </div>
+
+</div>
+<div id="log">
 
 </div>
 
