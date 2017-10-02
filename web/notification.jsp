@@ -12,7 +12,7 @@
 <head>
     <script>
         function dosomething(a){
-
+            window.location.href="notification.jsp?deletenum="+a;
             alert("has read this message!"+a)
         }
     </script>
@@ -28,8 +28,13 @@
     </br>
     <jsp:useBean  id="ad" class="comp9321.notific" />
     <%
-        request.getSession().setAttribute("userid",2);
+
+        
         int userid=(Integer) (request.getSession().getAttribute("userid"));
+        String delete=request.getParameter("deletenum");
+        if (delete!=null){
+            ad.delete(userid,delete);
+        }
 
         List str=ad.getstr(userid);
         request.setAttribute("uList",str);
@@ -44,7 +49,3 @@
 </div>
 </body>
 </html>
-
-
-
-
