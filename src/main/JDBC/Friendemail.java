@@ -37,7 +37,7 @@ public class Friendemail {
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(target_mail_add));
             message.setSubject("Testing Subject");
-            message.setText("Dear user "+friend_name+": \nThis is a e-mail to confirm add friennd request on our website\nIf you want to have a look of the person,please use this url in your browser.http://localhost:8080/confirm.jsp?applyname="+username+"&username="+friend_name+"");
+            message.setText("Dear user "+friend_name+": \nThis is a e-mail to confirm add friennd request on our website\nIf you want to have a look of the person,please use this url in your browser.http://localhost:8080/emailconfirm.jsp?applyname="+username+"&username="+friend_name+"");
             Transport.send(message);
 
             System.out.println("Done");
@@ -49,5 +49,11 @@ public class Friendemail {
         }
 
     }
+
+//    public static void main(String[] args) {
+//
+//        SendUNSWemail("vigoss", "Wangjie","wangjiecrystal0@gmail.com");
+//    }
+
 
 }
