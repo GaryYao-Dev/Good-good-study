@@ -18,7 +18,7 @@ public class admin_model {
             String url="jdbc:mysql://localhost:3306/unswbook";
 
 
-            conn = DriverManager.getConnection(url,    "root","0828");
+            conn = DriverManager.getConnection(url,    "root","root");
         }catch(Exception e)
         {
             e.printStackTrace();
