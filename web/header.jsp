@@ -1,4 +1,4 @@
-<%--
+<%@ page import="main.JDBC.UserInfro" %><%--
   Created by IntelliJ IDEA.
   User: kevifunaumac
   Date: 2017/9/26
@@ -54,7 +54,11 @@
                     Wall
                 </button>
                 <button type="button" onclick="forwardtohome()" class="btn btn-default navbar-btn">
-                    Home
+                    <%
+                        Integer userID = (Integer) pageContext.getSession().getAttribute("userid");
+                        String userName = UserInfro.getUserNameByUserid(userID);
+                    %>
+                    <%=userName%>
                 </button>
                 <button type="button" onclick="forwardtohome()" class="btn btn-default navbar-btn">
                     notification

@@ -1,6 +1,7 @@
 package main.control;
 
 import main.JDBC.PostMessage;
+import main.admin.admin_model;
 import main.model.postMessageBean;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -18,6 +19,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
@@ -75,6 +77,17 @@ public class UploadNewPostServlet extends HttpServlet {
         }
         //将 新 post 插入数据库
         PostMessage.insertMessage(p_content,p_image,user_id);
+        admin_model admin = new admin_model();
+        try {
+            String log_content = p_content;
+            if (p_image !=""){
+                log_content += " and photo:"+p_image;
+            }
+            admin.log_post(user_id, log_content);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

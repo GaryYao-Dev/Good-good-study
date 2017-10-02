@@ -209,6 +209,48 @@ public class PostMessage {
 
     }
 
+    public static String getPostContentByP_id(int p_id){
+        Connection conn = null;
+        PreparedStatement pstmt =null;
+        ResultSet rs = null;
+        String p_content = null;
+        try {
+            conn = DButil.getConnection();
+            pstmt = conn.prepareStatement("select p_content from post where p_id = ?");
+            pstmt.setInt(1,p_id);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                p_content = rs.getString("p_content");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DButil.closeall(conn,pstmt,rs);
+        }
+        return  p_content;
+    }
+
+    public static String getIMGByP_id(int p_id){
+        Connection conn = null;
+        PreparedStatement pstmt =null;
+        ResultSet rs = null;
+        String p_img = null;
+        try {
+            conn = DButil.getConnection();
+            pstmt = conn.prepareStatement("select p_image from post where p_id = ?");
+            pstmt.setInt(1,p_id);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                p_img = rs.getString("p_image");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DButil.closeall(conn,pstmt,rs);
+        }
+        return  p_img;
+    }
+
 
 
 

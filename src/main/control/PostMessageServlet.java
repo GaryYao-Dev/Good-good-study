@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import main.JDBC.DButil;
 import main.JDBC.PostMessage;
 import main.JDBC.likeMessage;
+import main.admin.admin_model;
 import main.model.postMessageBean;
 
 import javax.servlet.RequestDispatcher;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
 import java.io.IOException;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,7 +42,17 @@ public class PostMessageServlet extends HttpServlet {
         String p_id = request.getParameter("p_id");
         if(p_id != null){
             //删除操作
+            String p_content = PostMessage.getPostContentByP_id(Integer.parseInt(p_id));
+            String p_img = PostMessage.getIMGByP_id(Integer.parseInt(p_id));
             PostMessage.DeletePostMessageByP_id(Integer.parseInt(p_id));
+            admin_model admin = new admin_model();
+            try {
+                String log_content = p_content;
+                if (p_img!="") log_content += "and photo:"+p_img;
+                admin.log_delete_post(user_id, log_content);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }else{
             // 根据当前user_id 找出 他的 所有friend的 post
             List<postMessageBean> _list =  PostMessage.getPostByUserid(user_id);
