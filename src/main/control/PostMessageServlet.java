@@ -48,7 +48,7 @@ public class PostMessageServlet extends HttpServlet {
             admin_model admin = new admin_model();
             try {
                 String log_content = p_content;
-                if (p_img!="") log_content += "and photo:"+p_img;
+                if (!p_img.equals("")) log_content += " and photo: "+ p_img;
                 admin.log_delete_post(user_id, log_content);
             } catch (SQLException e) {
                 e.printStackTrace();

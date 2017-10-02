@@ -80,8 +80,8 @@ public class UploadNewPostServlet extends HttpServlet {
         admin_model admin = new admin_model();
         try {
             String log_content = p_content;
-            if (p_image !=""){
-                log_content += " and photo:"+p_image;
+            if (!p_image.equals("")){
+                log_content += " and photo: "+p_image;
             }
             admin.log_post(user_id, log_content);
         } catch (SQLException e) {
