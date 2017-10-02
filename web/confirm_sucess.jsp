@@ -12,7 +12,7 @@
 </head>
 <body>
 <%
-out.println("success!");
-        %>
+    out.println("Success to add friend!");
+%>
 </body>
 </html>
