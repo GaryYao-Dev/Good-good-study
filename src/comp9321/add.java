@@ -4,14 +4,22 @@ import com.mysql.jdbc.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 public class add {
 	private static String []a=new String[100000];
 	private static int num=0;
 	private static Connection connect() {
-		String driver="com.mysql.jdbc.Driver";
-		String url="jdbc:mysql://localhost:3306/unswbook";
-		String username="root";
-		String password="0828";
+
+
+			ResourceBundle rb = ResourceBundle.getBundle("dbinfro");
+			String driver = rb.getString("driver");
+			String url = rb.getString("db_url");
+			String username = rb.getString("user");
+			String password = rb.getString("password");
+
+
+
+
 		Connection conn=null;
 		try {
 			Class.forName(driver);
