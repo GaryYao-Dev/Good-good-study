@@ -47,6 +47,39 @@ public class SendEmail
             mex.printStackTrace();
         }
     }
+    public static void sendmail1(String emailadd,String ss) throws GeneralSecurityException
+    {
+
+        String to = emailadd;
+        String from = "807308796@qq.com";
+        String host = "smtp.qq.com";
+        Properties properties = System.getProperties();
+        properties.setProperty("mail.smtp.host", host);
+
+        properties.put("mail.smtp.auth", "true");
+        MailSSLSocketFactory sf = new MailSSLSocketFactory();
+        sf.setTrustAllHosts(true);
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.ssl.socketFactory", sf);
+        Session session = Session.getDefaultInstance(properties,new Authenticator(){
+            public PasswordAuthentication getPasswordAuthentication()
+            {
+                return new PasswordAuthentication("807308796@qq.com", "mbtifkdstlgrbeid"); //发件人邮件用户名、密码
+            }
+        });
+
+        try{
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject("Confirm mail");
+            message.setText(ss);
+            Transport.send(message);
+
+        }catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }
 //	public static void main(String args[]) {
 //		try {
 //			sendmail("807308796@qq.com");
