@@ -208,6 +208,25 @@ public class add {
     }
 	
 	public static String update(String username,String password1,String password2,String name,String year1,String month1,String day1,String gender,String email) {
+		if (username==null)
+			username="";
+		if (password1==null)
+			password1="";
+		if (password2==null)
+			password2="";
+		if (name==null)
+			name="";
+		if (year1==null)
+			year1="";
+		if (month1==null)
+			month1="";
+		if (day1==null)
+			day1="";
+		if (gender==null)
+			gender="";
+		if (email==null)
+			email="";
+
 		Connection conn=connect();
 		String sql="select count(*) from users where user_name='"+username+"' and password='"+password1+"'";
 		PreparedStatement pstmt;
@@ -257,14 +276,7 @@ public class add {
 		if (!name.equals(""))
 		{
 			System.out.println("name");
-			sql="update users set user_Name='"+name+"'where user_name='"+username+"'";
-			try {
-				pstmt=(PreparedStatement)conn.prepareStatement(sql);
-				i=pstmt.executeUpdate();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 			sql="update users set userName='"+name+"'where user_name='"+username+"'";
 			try {
 				pstmt=(PreparedStatement)conn.prepareStatement(sql);
@@ -278,7 +290,7 @@ public class add {
 		{
 			if (!(gender.equals("F") || gender.equals("M") || gender.equals("f") || gender.equals("m")))
 				return "gender must be wrong";
-			sql="update user_profiles set gender='"+gender+"'where user_name='"+username+"'";
+			sql="update users set gender='"+gender+"'where user_name='"+username+"'";
 			try {
 				pstmt=(PreparedStatement)conn.prepareStatement(sql);
 				i=pstmt.executeUpdate();
@@ -289,7 +301,7 @@ public class add {
 		}
 		if (!email.equals(""))
 		{
-			sql="update user_profiles set email='"+email+"'where user_name='"+username+"'";
+			sql="update users set email='"+email+"'where user_name='"+username+"'";
 			try {
 				pstmt=(PreparedStatement)conn.prepareStatement(sql);
 				i=pstmt.executeUpdate();
@@ -300,7 +312,7 @@ public class add {
 		}
 		if (!year1.equals(""))
 		{
-			sql="update user_profiles set u_year= "+year1+" where user_name='"+username+"'";
+			sql="update users set u_year= "+year1+" where user_name='"+username+"'";
 			try {
 				pstmt=(PreparedStatement)conn.prepareStatement(sql);
 				i=pstmt.executeUpdate();
@@ -311,7 +323,7 @@ public class add {
 		}
 		if (!month1.equals(""))
 		{
-			sql="update user_profiles set u_month= "+month1+" where user_name='"+username+"'";
+			sql="update users set u_month= "+month1+" where user_name='"+username+"'";
 			try {
 				pstmt=(PreparedStatement)conn.prepareStatement(sql);
 				i=pstmt.executeUpdate();
@@ -322,7 +334,7 @@ public class add {
 		}
 		if (!day1.equals(""))
 		{
-			sql="update user_profiles set u_day= "+day1+" where user_name='"+username+"'";
+			sql="update users set u_day= "+day1+" where user_name='"+username+"'";
 			try {
 				pstmt=(PreparedStatement)conn.prepareStatement(sql);
 				i=pstmt.executeUpdate();
@@ -357,6 +369,26 @@ public class add {
 		}
 				
 		return nn;
+	}
+	public static int getid(String username){
+		Connection conn=connect();
+		String sql="select userid from users where user_name='"+username+"'";
+		PreparedStatement pstmt;
+		int result=0;
+		try {
+			pstmt=(PreparedStatement)conn.prepareStatement(sql);
+			ResultSet rs=pstmt.executeQuery();
+			int col=rs.getMetaData().getColumnCount();
+
+			while (rs.next()) {
+				result=rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 	public static void newphoto(String username,String file) {
 		System.out.println(file);
