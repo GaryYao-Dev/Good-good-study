@@ -1,6 +1,7 @@
 package main.control;
 
 import main.JDBC.FriendsSearch;
+import main.admin.admin_model;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static main.JDBC.Friendemail.SendUNSWemail;
 import static main.JDBC.UserInfro.getUserEmailByUserid;
@@ -27,6 +29,12 @@ public class AddFriendServlet extends HttpServlet {
         System.out.print(user_id);
         System.out.print(friend_id);
         FriendsSearch.addFriend(user_id,friend_id);
+        admin_model am  = new admin_model();
+        try {
+            am.log_add_friend(user_id, friend_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         //发送 邮件
         String userName = getUserNameByUserid(user_id);
