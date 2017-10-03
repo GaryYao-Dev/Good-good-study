@@ -119,6 +119,9 @@ public class add {
 				break;
 			}
 		}
+		if (gender==null){
+			return "gender must be wrong";
+		}
 		if (f==false) {
 			return "username has been use";
 		}
@@ -152,8 +155,13 @@ public class add {
 			return "month must be wrong";
 		if (day>31 || day<1)
 			return "day must be wrong";
+
+		if (gender==null){
+			return "gender must be wrong";
+		}
 		if (!(gender.equals("F") || gender.equals("M") || gender.equals("f") || gender.equals("m")))
 			return "gender must be wrong";
+
 		if (email.length()>100)
 			return "email is too long";
 					
