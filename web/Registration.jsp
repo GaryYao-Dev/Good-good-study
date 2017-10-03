@@ -47,7 +47,7 @@
 
 	<%=s%>
 	<%} catch(Exception e){
-		out.print("year month and day must be numbers");
+		out.print("some detail information must be wrong!");
 	}
 
 	
