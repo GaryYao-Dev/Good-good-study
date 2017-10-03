@@ -23,7 +23,7 @@
         int len=request.getContentLength();
         byte buffer[]=new byte[len];
         InputStream in=request.getInputStream();
-        String ppp=request.getContextPath()+"headphoto";
+        String ppp=request.getServletContext().getRealPath("/")+"headphoto";
         if (!(new java.io.File(ppp).isDirectory())) {
             new java.io.File(ppp).mkdir();
         }
@@ -34,8 +34,8 @@
         fout.write(b);
         fout.flush();  //写入文件
         fout.close();  //关闭
-        String path=request.getContextPath()+"headphoto/headphototest.txt";
-        String filepath=request.getContextPath()+"headphoto/headphoto"+String.valueOf(rubbish)+".jpeg";
+        String path=request.getServletContext().getRealPath("/")+"headphoto/headphototest.txt";
+        String filepath=request.getServletContext().getRealPath("/")+"headphoto/headphoto"+String.valueOf(rubbish)+".jpeg";
         RandomAccessFile raf=new RandomAccessFile(path,"r");
         OutputStream out1=new FileOutputStream(filepath);
         OutputStream out2=new FileOutputStream(path);
