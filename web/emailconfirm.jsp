@@ -21,7 +21,7 @@
     out.println("Dear user "+useremailname+":\n User "+applyemailname+"want to add you as friend.");
 %>
 
-<input type="button" name="button" value="button" onclick="javascript:location.href='friendConfirm'"/>
+<input type="button" name="button" value="confirm" onclick="javascript:location.href='friendConfirm'"/>
 
 </body>
 </html>
