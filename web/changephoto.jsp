@@ -34,8 +34,8 @@
         fout.write(b);
         fout.flush();  //写入文件
         fout.close();  //关闭
-        String path=request.getServletContext().getRealPath("/")+"headphoto/headphototest.txt";
-        String filepath=request.getServletContext().getRealPath("/")+"headphoto/headphoto"+String.valueOf(rubbish)+".jpeg";
+        String path=request.getServletContext().getRealPath("/headphoto/")+"headphototest.txt";
+        String filepath=request.getServletContext().getRealPath("/headphoto/")+"headphoto"+String.valueOf(rubbish)+".jpeg";
         RandomAccessFile raf=new RandomAccessFile(path,"r");
         OutputStream out1=new FileOutputStream(filepath);
         OutputStream out2=new FileOutputStream(path);
