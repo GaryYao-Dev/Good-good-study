@@ -165,7 +165,7 @@
         <div class="block-menu">
             <ul>
                 <li><a href="#" onclick="log()">Timeline</a></li>
-                <li><a href="#" onclick="show_friend()">about</a></li>
+                <li><a href="#" onclick="javascript:location.href='updateinformationhome.jsp'">About</a>
                 <li><a href="homepagefriends">Friends</a></li>
             </ul>
         </div>
