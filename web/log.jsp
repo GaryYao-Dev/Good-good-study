@@ -12,6 +12,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@include file="userhomepage.jsp"%>
 <h5>LOG</h5>
 <table>
     <c:forEach items="${log}" var="row">
