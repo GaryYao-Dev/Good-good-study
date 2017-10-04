@@ -38,7 +38,7 @@
                 document.getElementById("log").innerHTML=xmlhttp.responseText;
             }
         }
-        xmlhttp.open("GET","/admin?action=log&&userID="+userID,true);
+        xmlhttp.open("GET","/admin?action=log_for_admin&&userID="+userID,true);
         xmlhttp.send();
     }
     function ban_log()
@@ -54,7 +54,7 @@
                 document.getElementById("log").innerHTML=xmlhttp.responseText;
             }
         }
-        xmlhttp.open("GET","/admin?action=log&&userID="+userID,true);
+        xmlhttp.open("GET","/admin?action=log_for_admin&&userID="+userID,true);
         xmlhttp.send();
 
     }

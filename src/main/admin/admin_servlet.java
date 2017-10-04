@@ -49,6 +49,13 @@ public class admin_servlet extends HttpServlet{
             view.forward(req, resp);
         }
 
+        if (action.equals("log_for_admin")){
+            Integer userID = Integer.parseInt(req.getParameter("userID"));
+            req.setAttribute("log", showLog(userID));
+            RequestDispatcher view = req.getRequestDispatcher("log_for_admin.jsp");
+            view.forward(req, resp);
+        }
+
         if (action.equals("ban")){
             Integer userID = Integer.parseInt(req.getParameter("userID"));
             try {
