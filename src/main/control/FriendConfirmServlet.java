@@ -36,15 +36,12 @@ public class FriendConfirmServlet extends HttpServlet {
 
         //给 该 post的用户发 站内信
         String userName = UserInfro.getUserNameByUserid(applyemailid);
-        SendNotification.sendnotification(applyemailid,useremailid,userName+"accept your request");
+        SendNotification.sendnotification(applyemailid,useremailid,userName+" and you now are friend!");
 
         if (useremailname != null && applyemailname!= null ){
             confirmfriend(applyemailid,useremailid);
             confirmfriend(useremailid,applyemailid);
             response.sendRedirect("/confirm_sucess.jsp");
         }
-
-
-
     }
 }
