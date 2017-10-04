@@ -13,6 +13,7 @@
 </head>
 <body>
 <h5>LOG</h5>
+<%@include file="userhomepage.jsp"%>
 <table>
     <c:forEach items="${log}" var="row">
         <tr><td>Activity</td><td>${row.get(0)}</td></tr>

@@ -164,7 +164,7 @@
     <div class="fb-profile-block-menu">
         <div class="block-menu">
             <ul>
-                <li><a href="#" onclick="log()">Timeline</a></li>
+                <li><a href="/admin?action=log&&userID=<%=userID%>">Timeline</a></li>
                 <li><a href="#" onclick="javascript:location.href='updateinformationhome.jsp'">About</a>
                 <li><a href="homepagefriends">Friends</a></li>
             </ul>
