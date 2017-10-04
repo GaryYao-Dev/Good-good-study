@@ -1,6 +1,8 @@
 
 package main.control;
 
+import main.JDBC.PostMessage;
+import main.JDBC.SendNotification;
 import main.JDBC.UserInfro;
 
 import javax.servlet.ServletException;
@@ -31,10 +33,18 @@ public class FriendConfirmServlet extends HttpServlet {
         System.out.println(applyemailid);
         int useremailid = UserInfro.getUseridByUsername(useremailname);
         System.out.println(useremailid);
+
+        //给 该 post的用户发 站内信
+        String userName = UserInfro.getUserNameByUserid(applyemailid);
+        SendNotification.sendnotification(applyemailid,useremailid,userName+"accept your request");
+
         if (useremailname != null && applyemailname!= null ){
             confirmfriend(applyemailid,useremailid);
             confirmfriend(useremailid,applyemailid);
             response.sendRedirect("/confirm_sucess.jsp");
         }
+
+
+
     }
 }
