@@ -85,6 +85,11 @@ public class admin_model {
         insert_log(userID, activity);
     }
 
+    public void log_out(Integer userID) throws SQLException {
+        String activity = "Logout";
+        insert_log(userID, activity);
+    }
+
     public void log_add_friend(Integer userID, Integer friendID) throws SQLException {
         String activity = "Add "+friendID+" as friend";
         insert_log(userID, activity);
