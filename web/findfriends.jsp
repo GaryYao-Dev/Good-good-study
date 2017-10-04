@@ -19,11 +19,6 @@
 <body>
 
 <%@include file="header.jsp"%>
-
-
-
-
-
 <form action="findfriends" method="get">
     <table  class="table">
         <tr>
@@ -46,11 +41,6 @@
 
     </table>
 </form>
-
-
-
-
-
 
 <div class="container">
     <div class="top">
@@ -84,7 +74,7 @@
 
         </div>
     </div>
-
+</div>
 
 
 
@@ -122,7 +112,7 @@
 
         </div>
     </div>
-
+</div>
 
 
 
