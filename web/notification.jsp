@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+
 <%@ page import="org.w3c.dom.*"%>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="main.control.LikePostServlet" %>
@@ -16,15 +15,15 @@
             alert("has read this message!"+a)
         }
     </script>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <title>notification</title>
 </head>
 <body>
+<%@include file="header.jsp"%>
 <div class="container" id="wrap">
-    <logo>UNSWBOOk</logo>
     </br>
     <jsp:useBean  id="ad" class="comp9321.notific" />
     <%
