@@ -556,6 +556,7 @@
 
 <body>
 <%@include file="header.jsp"%>
+
 <div class="container">
     <div class="col-md-3  text-center"><logo>UNSW Wall</logo></div>
 
@@ -603,7 +604,7 @@
                                         <div class="media">
                                             <div class="media-left">
                                                 <a href="#">
-                                                    <img class="media-object photo-profile" src="http://0.gravatar.com/avatar/38d618563e55e6082adf4c8f8c13f3e4?s=40&d=mm&r=g" width="40" height="40" alt="...">
+                                                    <img class="media-object photo-profile" src="<%out.print(request.getContextPath()+"headphoto/headphoto"+String.valueOf((int)request.getSession().getAttribute("userid"))+".jpeg");%>" width="40" height="40" alt="...">
                                                 </a>
                                             </div>
                                             <div class="media-body">
