@@ -1,15 +1,7 @@
 // for wallpage.jsp
 
 
-function contentcheck() {
-    var c = document.getElementById("p_content").value;
-    if(c == ""){
-        alert("This post appears to be blank. Please write something or attach a link or photo to post.")
-    }else {
-        document.getElementById("postMessageForm").submit();
-        window.location.reload("postmessage");
-    }
-}
+
 //隐藏 post
 function toggle(targetid){
     if (document.getElementById){

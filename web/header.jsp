@@ -25,6 +25,9 @@
         function forwardtofindfriends() {
             window.location.href ="findfriends"
         }
+        function forwardtologout() {
+            window.location.href ="logout"
+        }
 
 
     </script>
@@ -54,14 +57,13 @@
                     Wall
                 </button>
                 <button type="button" onclick="forwardtohome()" class="btn btn-default navbar-btn">
-                    <%
-                        Integer userID = (Integer) pageContext.getSession().getAttribute("userid");
-                        String userName = UserInfro.getUserNameByUserid(userID);
-                    %>
-                    <%=userName%>
+                    ${sessionScope.userName}
                 </button>
                 <button type="button" onclick="javascript:location.href='notification.jsp'" class="btn btn-default navbar-btn">
                     notification
+                </button>
+                <button type="button" onclick="forwardtologout()" class="btn btn-default navbar-btn">
+                    log out
                 </button>
 
             </ul>

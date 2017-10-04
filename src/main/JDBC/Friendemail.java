@@ -6,7 +6,9 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class Friendemail {
+
     public static void SendUNSWemail(String username, String friend_name,String email) {
+
         String target_mail_add = email;
         final String from = "unswbookemailserver@gmail.com";
         final String password = "root123@";

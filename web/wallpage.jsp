@@ -100,6 +100,24 @@
       </style>
 
 
+      <script type="text/javascript">
+          function contentcheck() {
+              var c = document.getElementById("p_content").value;
+              if(c == ""){
+                  alert("This post appears to be blank. Please write something or attach a link or photo to post.")
+              }else {
+                  document.getElementById("postMessageForm").submit();
+                  alert("waiting.....")
+                  setInterval(2000);
+                  var j = document.getElementById("jump");
+                  j.submit();
+              }
+          }
+      </script>
+
+
+
+
   </head>
 
 
@@ -199,10 +217,7 @@
       </div>
   </div>
 
-
-
-
-
+  <form action="postmessage" method="post" id = "jump"></form>
 
   </body>
 </html>

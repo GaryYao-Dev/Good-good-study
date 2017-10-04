@@ -62,7 +62,7 @@ public class UploadNewPostServlet extends HttpServlet {
             for (FileItem fileitem:fileItems
                  ) {
                 if(fileitem.isFormField()){
-                    //普通表单项目 -- p_content
+                    //普通表单项目 -- p_contentadmin
                     p_content = processFormField(fileitem);
 
 
@@ -107,6 +107,7 @@ public class UploadNewPostServlet extends HttpServlet {
 
             //创建 磁盘文件夹
             String directoryRealPath = this.getServletContext().getRealPath("/uploadImage/");
+            System.out.print(directoryRealPath);
             File storeDirectory = new File(directoryRealPath);
             if(!storeDirectory.exists()){
                 storeDirectory.mkdirs();//如不存在 创建一个制定的文件夹

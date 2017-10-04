@@ -37,6 +37,8 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("userid",userid);
             System.out.println(userid);
             session.setAttribute("user_name",username);
+            String userName = UserInfro.getUserNameByUserid(userid);
+            session.setAttribute("userName",userName);
             admin_model am  = new admin_model();
             try {
                 am.log_login(userid);
@@ -50,7 +52,4 @@ public class LoginServlet extends HttpServlet {
         }
     }
 }
-
-
-
 

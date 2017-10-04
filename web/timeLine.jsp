@@ -110,6 +110,8 @@
     </style>
 </head>
 <body>
+
+
 <%@include file="header.jsp"%>
 
 <div class="fb-profile-block">

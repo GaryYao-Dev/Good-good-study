@@ -1,3 +1,4 @@
+
 package main.control;
 
 import main.JDBC.UserInfro;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static main.JDBC.UserInfro.getUseridByUser_name;
 import static main.JDBC.UserInfro.getUseridByUsername;
 import static main.JDBC.friendconfirm.confirmfriend;
 
@@ -27,9 +27,9 @@ public class FriendConfirmServlet extends HttpServlet {
         System.out.println(useremailname);
         String applyemailname = (String) request.getSession().getAttribute("applyemailname");;
         System.out.println(applyemailname);
-        int applyemailid = getUseridByUsername(applyemailname);
+        int applyemailid = UserInfro.getUseridByUsername(applyemailname);
         System.out.println(applyemailid);
-        int useremailid = getUseridByUser_name(useremailname);
+        int useremailid = UserInfro.getUseridByUsername(useremailname);
         System.out.println(useremailid);
         if (useremailname != null && applyemailname!= null ){
             confirmfriend(applyemailid,useremailid);

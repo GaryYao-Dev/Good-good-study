@@ -5,11 +5,12 @@
   Time: 下午10:28
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script type="text/javascript">
     function log()
     {
+
         var xmlhttp = new XMLHttpRequest();
         var userID = "${userid}";
         xmlhttp.onreadystatechange=function()
@@ -37,6 +38,7 @@
         xmlhttp.open("GET","/userhomepage_showfriends.jsp?userID="+userID,true);
         xmlhttp.send();
     }
+
 </script>
 
 <html>
@@ -144,15 +146,19 @@
 </head>
 <body>
 <%@include file="header.jsp"%>
+
+
 <%
+    int userID = (int) session.getAttribute("userid");
     String imgPath = UserInfro.getImgPathByUserid(userID);
-    imgPath = "headphoto/"+imgPath;
+    imgPath = request.getServletPath()+"headphoto/"+imgPath;
 %>
+
 <div class="fb-profile-block">
     <div class="fb-profile-block-thumb"><img src="http://themeboxer.com/demo/snipp/coverpage.jpg" alt="" title=""></div>
     <div class="profile-img"><a href="#"><img src="<%=imgPath%>" alt="" title=""></a></div>
     <div class="profile-name">
-        <h2><%=userName%></h2>
+        <h2>${sessionScope.userName}</h2>
     </div>
 
     <div class="fb-profile-block-menu">
@@ -160,7 +166,7 @@
             <ul>
                 <li><a href="#" onclick="log()">Timeline</a></li>
                 <li><a href="#" onclick="show_friend()">about</a></li>
-                <li><a href="#">Friends</a></li>
+                <li><a href="homepagefriends">Friends</a></li>
             </ul>
         </div>
     </div>
