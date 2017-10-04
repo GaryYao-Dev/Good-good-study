@@ -14,6 +14,8 @@ public class LoginOutServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.removeAttribute("userid");
+        //log
+
         session.invalidate();
         response.sendRedirect("/login.jsp");
 

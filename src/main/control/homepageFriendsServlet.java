@@ -19,11 +19,10 @@ public class homepageFriendsServlet extends HttpServlet {
         //获取 自身的 userid
         HttpSession session = request.getSession();
         int user_id = (int) session.getAttribute("userid");
-
         List<FriendProfileBean> f = UserInfro.getFriendlistByuserid(user_id);
-        System.out.print(f.get(0).getUserName());
         session.setAttribute("homepage_friendlist",f);
         request.getRequestDispatcher("/userhomepage_friends.jsp").forward(request,response);
+
 
     }
 
