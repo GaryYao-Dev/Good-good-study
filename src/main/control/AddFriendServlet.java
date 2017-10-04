@@ -26,9 +26,10 @@ public class AddFriendServlet extends HttpServlet {
         System.out.print("______");
         //在数据库中 插入新记录
         int friend_id = Integer.parseInt(request.getParameter("friend_id"));
-        System.out.print(user_id);
-        System.out.print(friend_id);
+
         FriendsSearch.addFriend(user_id,friend_id);
+        FriendsSearch.addFriend(friend_id,user_id);
+
         admin_model am  = new admin_model();
         try {
             am.log_add_friend(user_id, friend_id);

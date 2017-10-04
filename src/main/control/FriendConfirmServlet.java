@@ -33,6 +33,7 @@ public class FriendConfirmServlet extends HttpServlet {
         System.out.println(useremailid);
         if (useremailname != null && applyemailname!= null ){
             confirmfriend(applyemailid,useremailid);
+            confirmfriend(useremailid,applyemailid);
             response.sendRedirect("/confirm_sucess.jsp");
         }
     }
