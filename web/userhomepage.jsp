@@ -151,7 +151,7 @@
 <%
     int userID = (int) session.getAttribute("userid");
     String imgPath = UserInfro.getImgPathByUserid(userID);
-    imgPath = request.getServletPath()+"headphoto/"+imgPath;
+    imgPath = request.getContextPath()+"headphoto/"+imgPath;
 %>
 
 <div class="fb-profile-block">
