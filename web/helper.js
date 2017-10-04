@@ -60,7 +60,7 @@ function deletep(p_id) {
     }
 
 //点赞  取消赞
-function likeornot(p_id,flag,id) {
+function likeornot(p_id,id) {
     var req = getXMLHttpRequest();
     req.onreadystatechange = function ()
     {
@@ -70,21 +70,24 @@ function likeornot(p_id,flag,id) {
             if(req.status == 200)
             {
                  alert(req.responseText);
+                window.location.href ="postmessage"
+
 
             }
         }
     }
 
-    if(flag == "like"){
+    var r = document.getElementById(id);
+    var flag = r.lastElementChild;
+    if(flag.innerHTML == "like"){
         //取消赞
-        var r1 = document.getElementById(id);
-        r1.innerHTML="unlike";
+
+        flag.innerHTML="unlike";
         req.open("get", "unlikepost?p_id=" + p_id);
         req.send(null);
 
     }else {
-        var r2 = document.getElementById(id);
-        r2.innerHTML="like";
+        flag.innerHTML="like";
         req.open("get", "likepost?p_id=" + p_id);
         req.send(null);
     }
