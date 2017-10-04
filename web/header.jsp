@@ -60,7 +60,7 @@
                     %>
                     <%=userName%>
                 </button>
-                <button type="button" onclick="forwardtohome()" class="btn btn-default navbar-btn">
+                <button type="button" onclick="javascript:location.href='notification.jsp'" class="btn btn-default navbar-btn">
                     notification
                 </button>
 
