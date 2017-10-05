@@ -449,7 +449,9 @@
 <%@ page import="main.control.LikePostServlet" %>
 <%@ page import="java.util.List" %>
 <%@ page import="main.model.postMessageBean" %>
+<%@ page import="org.w3c.dom.*"%>
 <%@ page import="java.util.ArrayList" %><%--
+
   Created by IntelliJ IDEA.
   User: kevifunaumac
   Date: 2017/9/23
@@ -462,6 +464,7 @@
 
 <html>
 <head>
+    <jsp:useBean  id="ad" class="main.model.postMessageBean" />
     <title>wall</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -591,6 +594,7 @@
     <br/>
     <br/>
 </div>
+
 <div class = "container">
     <div class="row">
         <c:forEach var="postMessage" items="${sessionScope.postMessageList}" >
@@ -604,7 +608,7 @@
                                         <div class="media">
                                             <div class="media-left">
                                                 <a href="#">
-                                                    <img class="media-object photo-profile" src="<%out.print(request.getContextPath()+"headphoto/headphoto"+String.valueOf((int)request.getSession().getAttribute("userid"))+".jpeg");%>" width="40" height="40" alt="...">
+                                                    <img class="media-object photo-profile" src="<%=request.getContextPath()%>headphoto/headphoto${postMessage.p_userid}.jpeg" width="40" height="40" alt="...">
                                                 </a>
                                             </div>
                                             <div class="media-body">
@@ -665,7 +669,7 @@
                                         <div class="media">
                                             <div class="media-left">
                                                 <a href="#">
-                                                    <img class="media-object photo-profile" src="http://0.gravatar.com/avatar/38d618563e55e6082adf4c8f8c13f3e4?s=40&d=mm&r=g" width="40" height="40" alt="...">
+                                                    <img class="media-object photo-profile" src="<%=request.getContextPath()%>headphoto/headphoto${postMessage.p_userid}.jpeg" width="40" height="40" alt="...">
                                                 </a>
                                             </div>
                                             <div class="media-body">
