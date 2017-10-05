@@ -47,7 +47,7 @@
 		ad.newphoto(username,filepath);
 	%>
 	<br>
-	<a href="Login.jsp">Now go to login in our unswbook</a>
+	<a href="login.jsp">Now go to login in our unswbook</a>
 	<form method="post" action="changephoto.jsp?userid=<%=userid%>"enctype="multipart/form-data">
 
 	you can update your photo：<input type="file" name="image">
