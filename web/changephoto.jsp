@@ -16,7 +16,7 @@
     </br>
     Everything is ok!
     <br>
-    <a href="Login.jsp">Now go to login in our unswbook</a>
+    <a href="login.jsp">Now go to login in our unswbook</a>
     <jsp:useBean  id="ad" class="comp9321.add" />
     <%
         int rubbish=Integer.valueOf(request.getParameter("userid"));
