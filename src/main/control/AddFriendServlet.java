@@ -38,7 +38,7 @@ public class AddFriendServlet extends HttpServlet {
         }
 
         //发送 邮件
-        String userName = getUserNameByUserid(user_id);
+        String userName = getUser_nameByUserid(user_id);
         String firend_name = getUser_nameByUserid(friend_id);
         String email = getUserEmailByUserid(friend_id);
         SendUNSWemail(userName, firend_name,email);
