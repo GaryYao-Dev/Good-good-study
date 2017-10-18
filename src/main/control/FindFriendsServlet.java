@@ -1,6 +1,8 @@
 package main.control;
 
 import main.JDBC.FriendsSearch;
+import main.JDBC.UserInfro;
+import main.model.EdgeBean;
 import main.model.FriendProfileBean;
 
 import javax.servlet.ServletException;
@@ -23,6 +25,18 @@ public class FindFriendsServlet extends HttpServlet {
         List<FriendProfileBean> findfriend_list = new ArrayList<>();
         List<FriendProfileBean> unconfirm_list = new ArrayList<>();
 
+        // for Graph visualization
+        List<Integer> Guserlist = new ArrayList<>();
+        List<Integer> Gpostlist = new ArrayList<>();
+        List<EdgeBean> Gfriendship = new ArrayList<>();
+        List<EdgeBean> Gpostship = new ArrayList<>();
+        List<EdgeBean> Glikeship = new ArrayList<>();
+
+        Guserlist = UserInfro.getUserlist();
+        Gpostlist = UserInfro.getpostlist();
+        Gfriendship = UserInfro.getfriendship();
+        Gpostship = UserInfro.getpostship();
+        Glikeship = UserInfro.getlikeship();
 
         //unconfirm friends list
         unconfirm_list = FriendsSearch.getUnConfirmFriendByUserid(user_id);
@@ -40,6 +54,14 @@ public class FindFriendsServlet extends HttpServlet {
 
         session.setAttribute("findfriend_list",findfriend_list);
         session.setAttribute("unconfirm_list",unconfirm_list);
+
+
+        session.setAttribute("Guserlist",Guserlist);
+        session.setAttribute("Gpostlist",Gpostlist);
+        session.setAttribute("Gfriendship",Gfriendship);
+        session.setAttribute("Gpostship",Gpostship);
+        session.setAttribute("Glikeship",Glikeship);
+
 
         response.sendRedirect("/findfriends.jsp");
 

@@ -1,5 +1,6 @@
 package main.JDBC;
 
+import main.model.EdgeBean;
 import main.model.FriendProfileBean;
 
 import java.sql.Connection;
@@ -12,14 +13,128 @@ import java.util.List;
 public class UserInfro {
 
 
-//
-//        public static void main(String [ ] args)
-//    {
-//
-//        List<FriendProfileBean> f = getFriendlistByuserid(1);
-//        System.out.print(f.get(0).getUserName());
-//
-//    }
+
+    public static ArrayList<Integer> getUserlist() {
+        ArrayList<Integer> userlist = new ArrayList();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DButil.getConnection();
+            pstmt = conn.prepareStatement("select userid from users where confirm_email = TRUE and confirm = TRUE ");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                userlist.add(rs.getInt("userid"));
+            }
+        } catch (SQLException var9) {
+            var9.printStackTrace();
+        } finally {
+            DButil.closeall(conn, pstmt, rs);
+        }
+        return userlist;
+    }
+
+    public static ArrayList<Integer> getpostlist() {
+        ArrayList<Integer> postlist = new ArrayList();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DButil.getConnection();
+            pstmt = conn.prepareStatement("select p_id from post where isVaild = TRUE ");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                postlist.add(rs.getInt("p_id"));
+            }
+        } catch (SQLException var9) {
+            var9.printStackTrace();
+        } finally {
+            DButil.closeall(conn, pstmt, rs);
+        }
+        return postlist;
+    }
+
+    public static ArrayList<EdgeBean> getfriendship(){
+
+        ArrayList<EdgeBean> friendshiplist = new ArrayList();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DButil.getConnection();
+            pstmt = conn.prepareStatement("select user_id,friend_id from friendship where confirm = TRUE ");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                EdgeBean e = new EdgeBean();
+                e.setFrom(rs.getInt("user_id"));
+                e.setTo(rs.getInt("friend_id"));
+                friendshiplist.add(e);
+            }
+        } catch (SQLException var9) {
+            var9.printStackTrace();
+        } finally {
+            DButil.closeall(conn, pstmt, rs);
+        }
+        return friendshiplist;
+
+
+    }
+
+    public static ArrayList<EdgeBean> getpostship(){
+
+        ArrayList<EdgeBean> postshiplist = new ArrayList();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DButil.getConnection();
+            pstmt = conn.prepareStatement("select p_userid,p_id from post WHERE isVaild = TRUE ");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                EdgeBean e = new EdgeBean();
+                e.setFrom(rs.getInt("p_userid"));
+                e.setTo(rs.getInt("p_id"));
+                postshiplist.add(e);
+            }
+        } catch (SQLException var9) {
+            var9.printStackTrace();
+        } finally {
+            DButil.closeall(conn, pstmt, rs);
+        }
+        return postshiplist;
+
+    }
+
+    public static ArrayList<EdgeBean> getlikeship(){
+
+        ArrayList<EdgeBean> likeshiplist = new ArrayList();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DButil.getConnection();
+            pstmt = conn.prepareStatement("select likeUser_id,p_id from likelist ");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                EdgeBean e = new EdgeBean();
+                e.setFrom(rs.getInt("likeUser_id"));
+                e.setTo(rs.getInt("p_id"));
+                likeshiplist.add(e);
+            }
+        } catch (SQLException var9) {
+            var9.printStackTrace();
+        } finally {
+            DButil.closeall(conn, pstmt, rs);
+        }
+        return likeshiplist;
+
+    }
+
 
 
 
@@ -175,9 +290,6 @@ public class UserInfro {
         return user_name;
 
     }
-
-
-
 
     public static List<FriendProfileBean> getFriendlistByuserid(int user_id) {
         List<FriendProfileBean> friend_list = new ArrayList<>();

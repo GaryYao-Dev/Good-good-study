@@ -45,3 +45,5 @@ public class FriendConfirmServlet extends HttpServlet {
         }
     }
 }
+
+
