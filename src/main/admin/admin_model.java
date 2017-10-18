@@ -2,6 +2,7 @@ package main.admin;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class admin_model {
 
@@ -119,6 +120,16 @@ public class admin_model {
 
     public void log_unban(Integer userID) throws SQLException {
         String activity = "Unbanned";
+        insert_log(userID, activity);
+    }
+
+    public void log_bully(Integer userID, Set<String> bully) throws SQLException {
+        String activity = "Bully word detected:";
+        for (String word:bully
+             ) {
+            activity += word+", ";
+        }
+        activity = activity.substring(0, activity.length()-2);
         insert_log(userID, activity);
     }
 }
