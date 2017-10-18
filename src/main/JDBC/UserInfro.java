@@ -2,6 +2,7 @@ package main.JDBC;
 
 import main.model.EdgeBean;
 import main.model.FriendProfileBean;
+import main.model.postMessageBean;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,19 +14,36 @@ import java.util.List;
 public class UserInfro {
 
 
+//        public static void main(String[] args) {
+//
+//
+//
+//            List<postMessageBean> p = new ArrayList<>();
+//            p= getpostlist();
+//            System.out.println(p.get(1).getP_content());
+//
+//    }
 
-    public static ArrayList<Integer> getUserlist() {
-        ArrayList<Integer> userlist = new ArrayList();
+
+    public static ArrayList<FriendProfileBean> getUserlist() {
+        ArrayList<FriendProfileBean> userlist = new ArrayList();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         try {
             conn = DButil.getConnection();
-            pstmt = conn.prepareStatement("select userid from users where confirm_email = TRUE and confirm = TRUE ");
+            pstmt = conn.prepareStatement("select userid,userName,gender,u_year,u_month,u_day from users where confirm_email = TRUE and confirm = TRUE ");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                userlist.add(rs.getInt("userid"));
+                FriendProfileBean f = new FriendProfileBean();
+                f.setUserid(rs.getInt("userid"));
+                f.setUserName(rs.getString("userName"));
+                f.setGender(rs.getString("gender"));
+                f.setU_year(rs.getString("u_year"));
+                f.setU_month(rs.getString("u_month"));
+                f.setU_day(rs.getString("u_day"));
+                userlist.add(f);
             }
         } catch (SQLException var9) {
             var9.printStackTrace();
@@ -35,18 +53,22 @@ public class UserInfro {
         return userlist;
     }
 
-    public static ArrayList<Integer> getpostlist() {
-        ArrayList<Integer> postlist = new ArrayList();
+    public static ArrayList<postMessageBean> getpostlist() {
+        ArrayList<postMessageBean> postlist = new ArrayList();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         try {
             conn = DButil.getConnection();
-            pstmt = conn.prepareStatement("select p_id from post where isVaild = TRUE ");
+            pstmt = conn.prepareStatement("select p_id,p_content,p_time from post where isVaild = TRUE ");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                postlist.add(rs.getInt("p_id"));
+                postMessageBean p = new postMessageBean();
+                p.setP_id(rs.getInt("p_id"));
+                p.setP_content(rs.getString("p_content"));
+                p.setP_time(rs.getTimestamp("p_time"));
+                postlist.add(p);
             }
         } catch (SQLException var9) {
             var9.printStackTrace();
@@ -134,8 +156,6 @@ public class UserInfro {
         return likeshiplist;
 
     }
-
-
 
 
 

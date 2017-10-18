@@ -186,16 +186,15 @@
 
     var nodes = [
 
-
         <c:forEach var="u" items="${Guserlist}">
 
-        {id:'${u}', group: 'friends'},
+        {id:'${u.userid}', group: 'friends',title: '${u.userName}'},
 
         </c:forEach>
 
         <c:forEach var="u" items="${Gpostlist}">
 
-        {id:'${u}', group: 'posts'},
+        {id:'${u.p_id}', group: 'posts',title: '${u.p_time}'},
 
         </c:forEach>
 
@@ -223,6 +222,7 @@
         edges: edges
     };
     var options = {
+        interaction: {hover: true},
         nodes: {
             shape: 'dot',
             size: 20,

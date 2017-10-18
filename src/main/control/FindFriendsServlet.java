@@ -4,6 +4,7 @@ import main.JDBC.FriendsSearch;
 import main.JDBC.UserInfro;
 import main.model.EdgeBean;
 import main.model.FriendProfileBean;
+import main.model.postMessageBean;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,8 +27,8 @@ public class FindFriendsServlet extends HttpServlet {
         List<FriendProfileBean> unconfirm_list = new ArrayList<>();
 
         // for Graph visualization
-        List<Integer> Guserlist = new ArrayList<>();
-        List<Integer> Gpostlist = new ArrayList<>();
+        List<FriendProfileBean> Guserlist = new ArrayList<>();
+        List<postMessageBean> Gpostlist = new ArrayList<>();
         List<EdgeBean> Gfriendship = new ArrayList<>();
         List<EdgeBean> Gpostship = new ArrayList<>();
         List<EdgeBean> Glikeship = new ArrayList<>();
