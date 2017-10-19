@@ -53,10 +53,6 @@
     </table>
 </form>
 
-<CENTER>
-    <div id="mynetwork"></div>
-</CENTER>
-
 
 
 
@@ -180,6 +176,9 @@
     </script>
     <form id="jump" action="findfriends"  method="get"></form>
 
+<CENTER>
+    <div id="mynetwork"></div>
+</CENTER>
 
 
     <script type="text/javascript">
@@ -188,7 +187,7 @@
 
         <c:forEach var="u" items="${Guserlist}">
 
-        {id:'${u.userid}', group: 'friends',title: '${u.userName}'},
+        {id:'${u.userid}', group: 'friends',title: '${u.userName}<br>${u.gender}<br>${u.u_year}-${u.u_month}-${u.u_day}'},
 
         </c:forEach>
 
@@ -202,15 +201,15 @@
     var edges = [
 
         <c:forEach var="f" items="${Gfriendship}">
-        {from: ${f.from}, to: ${f.to}},
+        {from: ${f.from}, to: ${f.to},arrows:'to',title:"friend"},
         </c:forEach>
 
         <c:forEach var="f" items="${Gpostship}">
-        {from: ${f.from}, to: ${f.to} ,title: 'post',color:{color:"#1bff18"}},
+        {from: ${f.from}, to: ${f.to} ,title: 'post',color:{color:"#1bff18"},arrows:'to'},
         </c:forEach>
 
         <c:forEach var="f" items="${Glikeship}">
-        {from: ${f.from}, to: ${f.to}, title: 'like',color:{color:"#ff4056"}},
+        {from: ${f.from}, to: ${f.to}, title: 'like',color:{color:"#ff4056"},arrows:'to'},
         </c:forEach>
 
     ]
@@ -267,12 +266,13 @@
                     color: '#0a1015'
                 }
 
-            }
+            },
+
+
         }
     };
 
     var network = new vis.Network(container, data, options);
-
 
 </script>
 

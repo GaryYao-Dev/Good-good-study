@@ -20,7 +20,10 @@ public class UserInfro {
 //
 //            List<postMessageBean> p = new ArrayList<>();
 //            p= getpostlist();
-//            System.out.println(p.get(1).getP_content());
+//            for (int i = 0; i <p.toArray().length ; i++) {
+//                System.out.println(p.get(i).getP_content());
+//            }
+//
 //
 //    }
 

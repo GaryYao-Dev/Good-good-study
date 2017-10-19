@@ -53,6 +53,9 @@ public class FindFriendsServlet extends HttpServlet {
         findfriend_list = FriendsSearch.getAdvancedSearch(_list,user_id);
 
 
+
+
+
         session.setAttribute("findfriend_list",findfriend_list);
         session.setAttribute("unconfirm_list",unconfirm_list);
 
