@@ -64,10 +64,11 @@ public class UserInfro {
 
         try {
             conn = DButil.getConnection();
-            pstmt = conn.prepareStatement("select p_id,p_content,p_time from post where isVaild = TRUE ");
+            pstmt = conn.prepareStatement("select p_userid,p_id,p_content,p_time from post where isVaild = TRUE ");
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 postMessageBean p = new postMessageBean();
+                p.setP_userid(rs.getInt("p_userid"));
                 p.setP_id(rs.getInt("p_id"));
                 p.setP_content(rs.getString("p_content"));
                 p.setP_time(rs.getTimestamp("p_time"));

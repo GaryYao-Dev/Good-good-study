@@ -30,6 +30,10 @@
 <body>
 
 <%@include file="header.jsp"%>
+
+
+
+
 <form action="findfriends" method="get">
     <table  class="table">
         <tr>
@@ -53,6 +57,10 @@
     </table>
 </form>
 
+
+<CENTER>
+    <div id="mynetwork"></div>
+</CENTER>
 
 
 
@@ -176,16 +184,23 @@
     </script>
     <form id="jump" action="findfriends"  method="get"></form>
 
-<CENTER>
-    <div id="mynetwork"></div>
-</CENTER>
 
 
     <script type="text/javascript">
 
     var nodes = [
 
-        <c:forEach var="u" items="${Guserlist}">
+
+        <c:if test="${sessionScope._empty=='0'}">
+            <c:forEach var="u" items="${Guserlist}">
+
+            {id:'${u.userid}', group: 'Afriends',title: '${u.userName}<br>${u.gender}<br>${u.u_year}-${u.u_month}-${u.u_day}'},
+
+            </c:forEach>
+        </c:if>
+
+
+        <c:forEach var="u" items="${findfriend_list}">
 
         {id:'${u.userid}', group: 'friends',title: '${u.userName}<br>${u.gender}<br>${u.u_year}-${u.u_month}-${u.u_day}'},
 
@@ -198,6 +213,8 @@
         </c:forEach>
 
     ];
+
+
     var edges = [
 
         <c:forEach var="f" items="${Gfriendship}">
@@ -246,6 +263,15 @@
                     color: 'green'
                 }
 
+            },
+            Afriends: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf007',
+                    size: 50,
+                    color: '#9c1f21'
+                }
             },
             friends: {
                 shape: 'icon',
