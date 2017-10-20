@@ -1,5 +1,5 @@
 package main.control;
-
+import main.admin.curation_model;
 import main.JDBC.PostMessage;
 import main.admin.admin_model;
 import main.model.postMessageBean;
@@ -9,18 +9,17 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -77,6 +76,23 @@ public class UploadNewPostServlet extends HttpServlet {
         }
         //将 新 post 插入数据库
         PostMessage.insertMessage(p_content,p_image,user_id);
+
+        ServletContext context = getServletContext();
+        String realPath = context.getRealPath("/");
+        String message = p_content;
+        curation_model curationModel= new curation_model(realPath);
+        PrintWriter out = response.getWriter();
+
+        try {
+            Set<String> bully = curationModel.checkBully(user_id, message);
+            for (String s:bully
+                    ) {
+                out.append(s+"\n");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        out.close();
         admin_model admin = new admin_model();
         try {
             String log_content = p_content;
