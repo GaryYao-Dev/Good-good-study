@@ -51,6 +51,7 @@
             <td><input type="text" name="u_year"></td>
             <td><input type="text" name="u_month"></td>
             <td><input type="text" name="u_day"></td>
+
         </tr>
         <input type="submit" value="Advance search">
 
@@ -58,11 +59,17 @@
 </form>
 
 
+
+
+
 <CENTER>
     <div id="mynetwork"></div>
 </CENTER>
 
-
+<form action="findfriends" method="get">
+    <input type="text" name="s_message">
+    <input type="submit" value="search message">
+</form>
 
 <div class="container">
     <div class="top">
@@ -208,7 +215,7 @@
 
         <c:forEach var="u" items="${Gpostlist}">
 
-        {id:'${u.p_id}', group: 'posts',title: '${u.p_time}'},
+        {id:'${u.p_id}', group: 'posts',title: '${u.p_content}<br>${u.p_time}'},
 
         </c:forEach>
 

@@ -1,6 +1,7 @@
 package main.control;
 
 import main.JDBC.FriendsSearch;
+import main.JDBC.PostMessage;
 import main.JDBC.UserInfro;
 import main.model.EdgeBean;
 import main.model.FriendProfileBean;
@@ -33,12 +34,22 @@ public class FindFriendsServlet extends HttpServlet {
         List<postMessageBean> _Gpostlist = new ArrayList<>();
         List<postMessageBean> Gpostlist = new ArrayList<>();
 
+
         List<EdgeBean> Gfriendship = new ArrayList<>();
         List<EdgeBean> Gpostship = new ArrayList<>();
         List<EdgeBean> Glikeship = new ArrayList<>();
 
+        String message = request.getParameter("s_message");
+        if (message!=null){
+            _Gpostlist = PostMessage.getUserlistbySearchMessage(message);
+        }else {
+            _Gpostlist = UserInfro.getpostlist();
+        }
+
+
         Guserlist = UserInfro.getFriendlistByuserid(user_id);
-        _Gpostlist = UserInfro.getpostlist();
+
+
 
         Gfriendship = UserInfro.getfriendship();
         Gpostship = UserInfro.getpostship();
@@ -64,7 +75,6 @@ public class FindFriendsServlet extends HttpServlet {
                 Gpostlist.add(_Gpostlist.get(i));
             }
         }
-
 
 
         if( userName == null && gender == null && u_year ==  null && u_month == null && u_day ==null  ){

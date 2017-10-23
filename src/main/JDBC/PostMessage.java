@@ -20,29 +20,17 @@ public class PostMessage {
 
 //    public static void main(String [ ] args)
 //    {
+//        List<postMessageBean> p  = SearchMessage("h");
+//        for (int i = 0; i < p.toArray().length; i++) {
+//            System.out.println(p.get(i).getP_id());
+//            System.out.println(p.get(i).getP_userid());
+//            System.out.println(p.get(i).getP_content());
+//            System.out.println(p.get(i).getP_time());
 //
-////        System.out.println(getUseridByP_id(23432353));
+//        }
 //
-//
-////
-////       // DeletePostMessageByP_id(2);
-////        List<postMessageBean> l = getPostByUserid(3);
-////        for (postMessageBean p :l
-////             ) {
-////              System.out.println(p.getP_id());
-////               System.out.println(p.getP_content());
-////               System.out.println(p.getP_image());
-////                System.out.println(p.getP_time());
-////            System.out.println(p.getP_userid());
-////            System.out.println(p.getUsername());
-////            System.out.println(p.getUserPhoto());
-////
-////          }
-//////        //insertMessage("6666666",null,5234123);
-////
-////
 //    }
-
+//
 
 
 
@@ -175,6 +163,36 @@ public class PostMessage {
         } finally {
             DButil.closeall(conn, pstmt, rs);
         }
+    }
+
+
+    public static  List<postMessageBean> getUserlistbySearchMessage(String p_content){
+        Connection conn = null;
+        PreparedStatement pstmt =null;
+        ResultSet rs = null;
+        List<postMessageBean> _list= new ArrayList<>();
+
+        try {
+            conn = DButil.getConnection();
+
+            pstmt = conn.prepareStatement("SELECT * FROM post where p_content like '%"+p_content+"%'");
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                postMessageBean p = new postMessageBean();
+                p.setP_id(rs.getInt("p_id"));
+                p.setP_content(rs.getString("p_content"));
+                p.setP_time(rs.getTimestamp("p_time"));
+                p.setP_userid(rs.getInt("p_userid"));
+                _list.add(p);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DButil.closeall(conn,pstmt,rs);
+        }
+        return _list;
+
     }
 
 
