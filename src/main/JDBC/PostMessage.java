@@ -1,12 +1,14 @@
 package main.JDBC;
 
 
+import main.admin.curation_model;
 import main.model.postMessageBean;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * class handle data access needed by postMessageServlet
@@ -109,7 +111,7 @@ public class PostMessage {
      * @param p_userid   谁post的
      */
 
-    public static   void insertMessage(String p_content, String p_image,int p_userid){
+    public static   void insertMessage(String p_content, String p_image,int p_userid, String realPath) throws Exception {
         Connection conn = null;
         PreparedStatement pstmt =null;
         ResultSet rs = null;
@@ -123,11 +125,52 @@ public class PostMessage {
             Timestamp timestamp = new Timestamp(date.getTime());
 
             // insert data
-            pstmt = conn.prepareStatement("insert into post(p_content, p_image, p_time, p_userid) values(?,?,?,?)");
+            pstmt = conn.prepareStatement(
+                    "insert into post(p_content, p_image, p_time, p_userid, p_location, p_organization, p_person, p_keyword) " +
+                            "values(?,?,?,?, ?, ?, ?, ?)");
             pstmt.setString(1, p_content);
             pstmt.setString(2, p_image);
             pstmt.setTimestamp(3,timestamp);
             pstmt.setInt(4,p_userid);
+
+            //curation data
+            // bully
+            curation_model curationModel= new curation_model(realPath);
+            curationModel.checkBully(p_userid, p_content);
+
+            //location
+            Set<String> set_location = curationModel.extractLocation(p_content);
+            String p_location = "";
+            for (String s: set_location
+                 ) {
+                p_location+=s.substring(0, s.length()-1)+", ";
+            }
+            pstmt.setString(5, p_location);
+            //organization
+            Set<String> set_organization = curationModel.extractOrganization(p_content);
+            String p_organization = "";
+            for (String s: set_organization
+                    ) {
+                p_organization+=s.substring(0, s.length()-1)+", ";
+            }
+            pstmt.setString(6, p_organization);
+            //person
+            Set<String> set_person = curationModel.extractPerson(p_content);
+            String p_person = "";
+            for (String s: set_person
+                    ) {
+                p_person+=s.substring(0, s.length()-1)+", ";
+            }
+            pstmt.setString(7, p_person);
+            //keyWord
+            Set<String> set_keyWord = curationModel.extractKeywords(p_content);
+            String p_keyWord = "";
+            for (String s: set_keyWord
+                    ) {
+                p_keyWord+=s+", ";
+            }
+            pstmt.setString(8, p_keyWord);
+
             pstmt.executeUpdate();
 
         } catch (SQLException e) {

@@ -85,7 +85,7 @@ public class curation_model {
         }
         if (result.size()>0){
             // send Email
-            sendBullyEmail("ygy3389@gmail.com", result, userID);
+            sendBullyEmail("unswbookemailserver@gmail.com", result, userID);
             //add log
             admin_model am = new admin_model();
             am.log_bully(userID, result);
@@ -102,6 +102,29 @@ public class curation_model {
         }
         return result;
     }
+
+    public Set<String> extractLocation(String message) throws URISyntaxException {
+        Set<String> result  = new HashSet<>();
+        List<String> extractNamedEntities = ess.ExtractLocation(message);
+        result.addAll(extractNamedEntities);
+        return result;
+    }
+
+    public Set<String> extractPerson(String message) throws URISyntaxException {
+        Set<String> result  = new HashSet<>();
+        List<String> extractNamedEntities = ess.ExtractPerson(message);
+        result.addAll(extractNamedEntities);
+        return result;
+    }
+
+    public Set<String> extractOrganization(String message) throws URISyntaxException {
+        Set<String> result  = new HashSet<>();
+        List<String> extractNamedEntities = ess.ExtractOrganization(message);
+        result.addAll(extractNamedEntities);
+        return result;
+    }
+
+
 
     private void sendBullyEmail(String email, Set<String> bully, Integer userID) {
 
