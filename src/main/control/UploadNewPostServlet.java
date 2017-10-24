@@ -75,24 +75,14 @@ public class UploadNewPostServlet extends HttpServlet {
             e.printStackTrace();
         }
         //将 新 post 插入数据库
-        PostMessage.insertMessage(p_content,p_image,user_id);
-
-        ServletContext context = getServletContext();
-        String realPath = context.getRealPath("/");
-        String message = p_content;
-        curation_model curationModel= new curation_model(realPath);
-        PrintWriter out = response.getWriter();
-
+        String realPath = getServletContext().getRealPath("/");
         try {
-            Set<String> bully = curationModel.checkBully(user_id, message);
-            for (String s:bully
-                    ) {
-                out.append(s+"\n");
-            }
+            PostMessage.insertMessage(p_content,p_image,user_id, realPath);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        out.close();
+
+        //post log
         admin_model admin = new admin_model();
         try {
             String log_content = p_content;

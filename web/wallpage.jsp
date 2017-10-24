@@ -652,6 +652,16 @@
                                             </c:forEach>
                                     </ul>
                                 </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <c:forEach var="likeuser" items="${postMessage.likeUserList}">
+                                            <li>${likeuser}</li>
+                                        </c:forEach>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>

@@ -29,8 +29,33 @@ public class curation_servlet extends HttpServlet{
             Set<String> bully = curationModel.checkBully(1, message);
             for (String s:bully
                  ) {
-                out.append(s+"\n");
+                out.append(s).append("\n");
             }
+            Set<String> person = curationModel.extractPerson(message);
+            Set<String> location = curationModel.extractLocation(message);
+            Set<String> organization = curationModel.extractOrganization(message);
+
+            out.append("person:"+"\n");
+
+            for (String s:person
+                    ) {
+                out.append(s).append("\n");
+            }
+
+            out.append("location:"+"\n");
+
+            for (String s:location
+                    ) {
+                out.append(s).append("\n");
+            }
+
+            out.append("organization:"+"\n");
+
+            for (String s:organization
+                    ) {
+                out.append(s).append("\n");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
