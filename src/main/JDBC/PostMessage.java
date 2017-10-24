@@ -22,13 +22,9 @@ public class PostMessage {
 
 //    public static void main(String [ ] args)
 //    {
-//        List<postMessageBean> p  = SearchMessage("h");
+//        List<postMessageBean> p  = getPostByUserid(1);
 //        for (int i = 0; i < p.toArray().length; i++) {
-//            System.out.println(p.get(i).getP_id());
-//            System.out.println(p.get(i).getP_userid());
-//            System.out.println(p.get(i).getP_content());
-//            System.out.println(p.get(i).getP_time());
-//
+//            System.out.println(p.get(i).getP_keyword());
 //        }
 //
 //    }
@@ -54,7 +50,7 @@ public class PostMessage {
             conn = DButil.getConnection();
             pstmt = conn.prepareStatement("\n" +
                     "(\n" +
-                    "select p.p_id,p.p_content,p.p_image,p.p_time,p.p_userid,t.name,t.photo\n" +
+                    "select p.p_keyword,p.p_organization,p.p_location,p.p_person,p.p_id,p.p_content,p.p_image,p.p_time,p.p_userid,t.name,t.photo\n" +
                     "from post p,\n" +
                     "(\n" +
                     "select u.userid as id ,u.userName as name,u.photo as photo\n" +
@@ -74,7 +70,7 @@ public class PostMessage {
                     ")union\n" +
                     "\n" +
                     "(\n" +
-                    "select p.p_id,p.p_content,p.p_image,p.p_time,p.p_userid,t.userName,t.photo\n" +
+                    "select p.p_keyword,p.p_organization,p.p_location,p.p_person,p.p_id,p.p_content,p.p_image,p.p_time,p.p_userid,t.userName,t.photo\n" +
                     "from post p , users t \n" +
                     "where p.isVaild = true\n" +
                     "and p.p_userid = t.userid\n" +
@@ -93,6 +89,10 @@ public class PostMessage {
                 p.setP_userid(rs.getInt("p_userid"));
                 p.setUsername(rs.getString("name"));
                 p.setUserPhoto(rs.getString("photo"));
+                p.setP_location(rs.getString("p_location"));
+                p.setP_person(rs.getString("p_person"));
+                p.setP_keyword(rs.getString("p_keyword"));
+                p.setP_organization(rs.getString("p_organization"));
                 _list.add(p);
             }
         } catch (SQLException e) {

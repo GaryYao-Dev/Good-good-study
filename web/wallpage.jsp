@@ -657,9 +657,14 @@
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <c:forEach var="likeuser" items="${postMessage.likeUserList}">
-                                            <li>${likeuser}</li>
-                                        </c:forEach>
+
+                                            <li>${postMessage.p_keyword}</li>
+                                            <li>${postMessage.p_organization}</li>
+
+                                            <li>${postMessage.p_person}</li>
+
+                                            <li>${postMessage.p_location}</li>
+
                                     </ul>
                                 </li>
                             </ul>

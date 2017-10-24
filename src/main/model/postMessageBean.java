@@ -14,6 +14,43 @@ public class postMessageBean {
 
     private String username;
     private String userPhoto;
+    private String p_person;
+    private String p_location;
+
+    public String getP_person() {
+        return p_person;
+    }
+
+    public void setP_person(String p_person) {
+        this.p_person = p_person;
+    }
+
+    public String getP_location() {
+        return p_location;
+    }
+
+    public void setP_location(String p_location) {
+        this.p_location = p_location;
+    }
+
+    public String getP_organization() {
+        return p_organization;
+    }
+
+    public void setP_organization(String p_organization) {
+        this.p_organization = p_organization;
+    }
+
+    public String getP_keyword() {
+        return p_keyword;
+    }
+
+    public void setP_keyword(String p_keyword) {
+        this.p_keyword = p_keyword;
+    }
+
+    private String p_organization;
+    private String p_keyword;
 
 
     private String like;

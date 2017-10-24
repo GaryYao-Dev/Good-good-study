@@ -73,6 +73,10 @@ public class PostMessageServlet extends HttpServlet {
                 List<String> _l = likeMessage.getlikeUserList(p.getP_id());
                 p.setLikeUserList(_l);
                 p.setListUseramount(_l.size());
+
+
+
+
             }
 
             //发送到 wallpage 页面显示
