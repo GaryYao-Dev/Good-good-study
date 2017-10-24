@@ -658,12 +658,12 @@
                                     </a>
                                     <ul class="dropdown-menu">
 
-                                            <li>${postMessage.p_keyword}</li>
-                                            <li>${postMessage.p_organization}</li>
+                                            <li><b>KEYWORD:</b>${postMessage.p_keyword}</li>
+                                            <li><b>ORGANIZATION:</b>${postMessage.p_organization}</li>
 
-                                            <li>${postMessage.p_person}</li>
+                                            <li><b>PERSON:</b>${postMessage.p_person}</li>
 
-                                            <li>${postMessage.p_location}</li>
+                                            <li><b>LOCATION:</b>${postMessage.p_location}</li>
 
                                     </ul>
                                 </li>

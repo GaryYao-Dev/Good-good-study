@@ -14,6 +14,9 @@ public class postMessageBean {
 
     private String username;
     private String userPhoto;
+
+    private String p_organization;
+    private String p_keyword;
     private String p_person;
     private String p_location;
 
@@ -22,6 +25,11 @@ public class postMessageBean {
     }
 
     public void setP_person(String p_person) {
+        String temp = p_person;
+        if (temp!=null&&temp.length()>0){
+            temp = temp.substring(0, temp.length()-2);
+            p_person = temp;
+        }
         this.p_person = p_person;
     }
 
@@ -30,6 +38,11 @@ public class postMessageBean {
     }
 
     public void setP_location(String p_location) {
+        String temp = p_location;
+        if (temp!=null&&temp.length()>0){
+            temp = temp.substring(0, temp.length()-2);
+            p_location = temp;
+        }
         this.p_location = p_location;
     }
 
@@ -38,6 +51,11 @@ public class postMessageBean {
     }
 
     public void setP_organization(String p_organization) {
+        String temp = p_organization;
+        if (temp!=null&&temp.length()>0){
+            temp = temp.substring(0, temp.length()-2);
+            p_organization = temp;
+        }
         this.p_organization = p_organization;
     }
 
@@ -46,11 +64,15 @@ public class postMessageBean {
     }
 
     public void setP_keyword(String p_keyword) {
+        String temp = p_keyword;
+        if (temp!=null&&temp.length()>0){
+            temp = temp.substring(0, temp.length()-2);
+            p_keyword = temp;
+        }
         this.p_keyword = p_keyword;
     }
 
-    private String p_organization;
-    private String p_keyword;
+
 
 
     private String like;
@@ -144,6 +166,8 @@ public class postMessageBean {
     public void setP_userid(int p_userid) {
         this.p_userid = p_userid;
     }
+
+
 
 
 
